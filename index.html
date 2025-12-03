@@ -5,40 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FFXIV Macro Database</title>
 
-  <!-- React + ReactDOM -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-  <!-- Babel Standalone -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- Lucide Icons -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #app {
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .error {
-      color: red;
-      white-space: pre-wrap;
-    }
-  </style>
 </head>
 <body>
-  <h1>FFXIV Macro Database</h1>
-  <div id="app">Loading...</div>
+  <div id="app">Test</div>
 
-  <!-- Load JSX directly -->
   <script type="text/babel" src="ffxiv-with-job-icons.jsx"></script>
-
-  <!-- Render the component -->
   <script type="text/babel">
     const root = ReactDOM.createRoot(document.getElementById("app"));
     root.render(<FFXIVMacroDatabase />);
