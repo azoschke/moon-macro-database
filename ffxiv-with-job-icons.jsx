@@ -1,5 +1,4 @@
 const { useState, useEffect, useMemo } = React;
-
 // Get icons from global Lucide object (loaded via CDN)
 const {
   Search,
@@ -16,7 +15,6 @@ const {
   Coffee,
   Globe
 } = lucide;
-
 // Job Icons Component
 const JobIcon = ({ job, size = 16, className = "" }) => {
   const jobIcons = {
