@@ -18,10 +18,19 @@
   <!-- Load your transpiled JS file -->
   <script src="ffxiv-with-job-icons.js"></script>
 
-  <!-- Mount the app -->
+  <!-- Mount the app with fallback -->
   <script>
     const root = ReactDOM.createRoot(document.getElementById("app"));
-    root.render(React.createElement(FFXIVMacroDatabase));
+
+    if (typeof FFXIVMacroDatabase !== "undefined") {
+      root.render(React.createElement(FFXIVMacroDatabase));
+    } else {
+      root.render(
+        React.createElement("div", { style: { padding: "2rem", textAlign: "center", color: "red" } },
+          "⚠️ Failed to load FFXIV Macro Database. Please refresh or check script setup."
+        )
+      );
+    }
   </script>
 </body>
 </html>
