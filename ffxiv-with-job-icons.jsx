@@ -1375,3 +1375,6 @@ const FFXIVMacroDatabase = () => {
     </div>
   );
 };
+
+// Expose the component globally so index.html can find it
+window.FFXIVMacroDatabase = FFXIVMacroDatabase;
