@@ -3,8 +3,6 @@ import { Search, Filter, ChevronDown, ChevronUp, Copy, Check, Edit2, Save, X, Pl
 
 // Job Icons Component
 const JobIcon = ({ job, size = 16, className = "" }) => {
-  // Job icon images as base64 (you would need to convert your uploaded images to base64)
-  // For now, I'll create a simple icon mapping system
   const jobIcons = {
     Carpenter: "🔨",
     Alchemist: "⚗️",
@@ -18,9 +16,6 @@ const JobIcon = ({ job, size = 16, className = "" }) => {
     Fisher: "🎣",
     Botanist: "🌿"
   };
-
-  // For actual implementation, you would use img tags with base64 or imported images
-  // Example: <img src={`/icons/${job}.png`} alt={job} className={className} style={{ width: size, height: size }} />
   
   return (
     <span className={className} style={{ fontSize: size }}>
@@ -403,9 +398,9 @@ const FFXIVMacroDatabase = () => {
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-gray-100 p-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-          FFXIV Cosmic Exploration - Crafting & Gathering Missions
+          FFXIV Cosmic Exploration
         </h1>
-
+        <p className="text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">Crafting Missions</p>
         {/* Controls */}
         <div className="mb-6 space-y-4">
           {/* Search Section with Toggle */}
