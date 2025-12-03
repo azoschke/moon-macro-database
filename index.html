@@ -11,6 +11,15 @@
 
   <!-- Lucide icons -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: #0f172a; /* slate-900 */
+      color: #f1f5f9; /* gray-100 */
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
@@ -20,17 +29,23 @@
 
   <!-- Mount the app with fallback -->
   <script>
-    const root = ReactDOM.createRoot(document.getElementById("app"));
-
-    if (typeof FFXIVMacroDatabase !== "undefined") {
-      root.render(React.createElement(FFXIVMacroDatabase));
-    } else {
-      root.render(
-        React.createElement("div", { style: { padding: "2rem", textAlign: "center", color: "red" } },
-          "⚠️ Failed to load FFXIV Macro Database. Please refresh or check script setup."
-        )
-      );
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const root = ReactDOM.createRoot(document.getElementById("app"));
+      if (typeof FFXIVMacroDatabase !== "undefined") {
+        root.render(React.createElement(FFXIVMacroDatabase));
+      } else {
+        root.render(
+          React.createElement("div", {
+            style: {
+              padding: "2rem",
+              textAlign: "center",
+              color: "cyan",
+              fontSize: "1.25rem"
+            }
+          }, "⚠️ Failed to load FFXIV Macro Database. Please refresh or check script setup.")
+        );
+      }
+    });
   </script>
 </body>
 </html>
