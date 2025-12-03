@@ -14,7 +14,7 @@
 
     // Force React and Lucide global mapping for hooks
     var _react = React;
-    var _lucideReact = lucideReact;
+    var _lucideReact = lucide;
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
@@ -28,8 +28,6 @@
     size = 16,
     className = ""
   }) => {
-    // Job icon images as base64 (you would need to convert your uploaded images to base64)
-    // For now, I'll create a simple icon mapping system
     const jobIcons = {
       Carpenter: "🔨",
       Alchemist: "⚗️",
@@ -43,9 +41,6 @@
       Fisher: "🎣",
       Botanist: "🌿"
     };
-
-    // For actual implementation, you would use img tags with base64 or imported images
-    // Example: <img src={`/icons/${job}.png`} alt={job} className={className} style={{ width: size, height: size }} />
 
     return /*#__PURE__*/_react.default.createElement("span", {
       className: className,
