@@ -1436,5 +1436,11 @@
       })
     });
   };
+  // Export as default for module systems
   var _default = _exports.default = FFXIVMacroDatabase;
+
+  // Also attach to window for direct browser usage
+  if (typeof window !== "undefined") {
+    window.FFXIVMacroDatabase = FFXIVMacroDatabase;
+  }
 });
