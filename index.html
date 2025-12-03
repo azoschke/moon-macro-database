@@ -9,10 +9,10 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-  <!-- Babel Standalone (for compiling JSX in-browser) -->
+  <!-- Babel Standalone -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- Lucide -->
+  <!-- Lucide Icons -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
 
   <style>
@@ -31,44 +31,29 @@
     }
   </style>
 </head>
-
 <body>
-
   <h1>FFXIV Macro Database</h1>
   <div id="app">Loading...</div>
 
-  <script>
+  <script type="text/javascript">
     async function loadJSX() {
-      const jsxUrl =
-        "https://raw.githubusercontent.com/azoschke/moon-macro-database/main/ffxiv-with-job-icons.jsx";
+      const jsxUrl = "./ffxiv-with-job-icons.jsx"; // local file in repo
 
       try {
         const response = await fetch(jsxUrl);
-
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status + " - " + response.statusText);
-        }
+        if (!response.ok) throw new Error("HTTP " + response.status);
 
         const jsxText = await response.text();
 
-        // Compile JSX to JS using Babel
         const compiled = Babel.transform(jsxText, {
-          presets: ["react"]
+          presets: ["env", "react"]
         }).code;
 
-        // Evaluate the compiled script
         eval(compiled);
 
-        // Expecting your JSX file to define a component called App
-        if (typeof App === "undefined") {
-          throw new Error(
-            "JSX loaded, but no global App component was found.\n\nMake sure your JSX file defines: const App = () => { ... }"
-          );
-        }
-
-        // Render into #app
+        // Render your component
         const root = ReactDOM.createRoot(document.getElementById("app"));
-        root.render(React.createElement(App));
+        root.render(React.createElement(FFXIVMacroDatabase));
 
       } catch (err) {
         console.error(err);
