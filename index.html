@@ -1,78 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Moon Macro Database</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FFXIV Macro Database</title>
 
-  <!-- React & ReactDOM (UMD builds) -->
+  <!-- React + ReactDOM -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-  <!-- Babel Standalone (in-browser JSX compiler) -->
+  <!-- Babel Standalone (for compiling JSX in-browser) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #0b0b15;
-      color: #e2e2e2;
-      margin: 0;
-      padding: 20px;
+      margin: 20px;
     }
-
-    #root {
+    #app {
       padding: 20px;
-      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .error {
+      color: red;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 
 <body>
-  <div id="root">Loading...</div>
+
+  <h1>FFXIV Macro Database</h1>
+  <div id="app">Loading...</div>
 
   <script>
-    async function loadAndRunJSX() {
+    async function loadJSX() {
       const jsxUrl =
         "https://raw.githubusercontent.com/azoschke/moon-macro-database/main/ffxiv-with-job-icons.jsx";
 
       try {
-        const code = await fetch(jsxUrl).then(r => r.text());
+        const response = await fetch(jsxUrl);
 
-        // If GitHub returned HTML instead of JS/JSX
-        if (code.startsWith("<!DOCTYPE") || code.startsWith("<html")) {
-          document.getElementById("root").innerText =
-            "Error: GitHub returned HTML (likely 404). Check the raw JSX file URL.";
-          return;
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status + " - " + response.statusText);
         }
 
-        // Compile JSX → JS
-        const compiled = Babel.transform(code, { presets: ["react"] }).code;
+        const jsxText = await response.text();
 
-        // Evaluate the compiled component
-        const exports = {};
-        new Function("React", "exports", compiled)(React, exports);
+        // Compile JSX to JS using Babel
+        const compiled = Babel.transform(jsxText, {
+          presets: ["react"]
+        }).code;
 
-        // Get the default export
-        const Component = exports.default;
+        // Evaluate the compiled script
+        eval(compiled);
 
-        if (!Component) {
-          document.getElementById("root").innerText =
-            "Error: Your JSX file must export a default component.";
-          return;
+        // Expecting your JSX file to define a component called App
+        if (typeof App === "undefined") {
+          throw new Error(
+            "JSX loaded, but no global App component was found.\n\nMake sure your JSX file defines: const App = () => { ... }"
+          );
         }
 
-        // Render React component
-        ReactDOM.createRoot(document.getElementById("root")).render(
-          React.createElement(Component)
-        );
+        // Render into #app
+        const root = ReactDOM.createRoot(document.getElementById("app"));
+        root.render(React.createElement(App));
 
       } catch (err) {
-        document.getElementById("root").innerText =
-          "Failed to load JSX file: " + err;
+        console.error(err);
+        document.getElementById("app").innerHTML =
+          "<div class='error'>Error loading JSX:\n" + err + "</div>";
       }
     }
 
-    loadAndRunJSX();
+    loadJSX();
   </script>
 </body>
 </html>
