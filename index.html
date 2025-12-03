@@ -15,13 +15,11 @@
 <body>
   <div id="app"></div>
 
-  <!-- Load your transpiled JS file -->
-  <script src="ffxiv-with-job-icons.js"></script>
+<script src="ffxiv-with-job-icons.js"></script>
+<script>
+  const root = ReactDOM.createRoot(document.getElementById("app"));
+  root.render(React.createElement(FFXIVMacroDatabase));
+</script>
 
-  <!-- Mount the app -->
-  <script>
-    const root = ReactDOM.createRoot(document.getElementById("app"));
-    root.render(React.createElement(FFXIVMacroDatabase));
-  </script>
 </body>
 </html>
