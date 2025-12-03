@@ -12,24 +12,24 @@
   function (_exports, _react, _lucide) {
     "use strict";
 
-// Force React global mapping
-var _react = React;
+    // Force React global mapping
+    var _react = React;
 
-// Wrap Lucide icons into React components
-var _lucideReact = {};
-Object.keys(lucide).forEach(function (iconName) {
-  var iconDef = lucide[iconName];
-  _lucideReact[iconName] = function IconComponent(props) {
-    return React.createElement(
-      "svg",
-      { ...iconDef.attr, ...props },
-      iconDef.children &&
-        iconDef.children.map(function (child, i) {
-          return React.createElement(child.tag, { key: i, ...child.attr });
-        })
-    );
-  };
-});
+    // Wrap *all* Lucide icons into React components
+    var _lucideReact = {};
+    Object.keys(lucide).forEach(function (iconName) {
+      var iconDef = lucide[iconName];
+      _lucideReact[iconName] = function IconComponent(props) {
+        return React.createElement(
+          "svg",
+          { ...iconDef.attr, ...props },
+          iconDef.children &&
+            iconDef.children.map(function (child, i) {
+              return React.createElement(child.tag, { key: i, ...child.attr });
+            })
+        );
+      };
+    });
     
   Object.defineProperty(_exports, "__esModule", {
     value: true
