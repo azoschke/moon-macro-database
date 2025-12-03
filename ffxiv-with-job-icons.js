@@ -4,14 +4,16 @@
   } else if (typeof exports !== "undefined") {
     factory(exports, require("react"), require("lucide-react"));
   } else {
-    var mod = {
-      exports: {}
-    };
+    var mod = { exports: {} };
     factory(mod.exports, global.react, global.lucideReact);
     global.repl = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _react, _lucideReact) {
-  "use strict";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this,
+  function (_exports, _react, _lucideReact) {
+    "use strict";
+
+    // Force React global mapping for hooks
+    var _react = React;
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
