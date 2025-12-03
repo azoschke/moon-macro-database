@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Macro Moon Database</title>
+
+  <!-- React & ReactDOM (UMD builds) -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone (in-browser JSX compiler) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b15;
+      color: #e2e2e2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #root {
+      padding: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">Loading...</div>
+
+  <script>
+    async function loadAndRunJSX() {
+      const jsxUrl =
+        "https://raw.githubusercontent.com/azoschke/macro-moon-database/main/ffxiv-with-job-icons.jsx";
+
+      try {
+        const code = await fetch(jsxUrl).then(r => r.text());
+
+        // Compile JSX → JS
+        const compiled = Babel.transform(code, { presets: ["react"] }).code;
+
+        // Evaluate the compiled component
+        const exports = {};
+        new Function("React", "exports", compiled)(React, exports);
+
+        // Get the default export
+        const Component = exports.default;
+
+        if (!Component) {
+          document.getElementById("root").innerText =
+            "Error: Your JSX file must export a default component.";
+          return;
+        }
+
+        // Render React component
+        ReactDOM.createRoot(document.getElementById("root")).render(
+          React.createElement(Component)
+        );
+
+      } catch (err) {
+        document.getElementById("root").innerText =
+          "Failed to load JSX file: " + err;
+      }
+    }
+
+    loadAndRunJSX();
+  </script>
+</body>
+</html>
