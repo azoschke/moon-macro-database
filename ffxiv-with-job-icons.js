@@ -16,27 +16,21 @@
     var _react = React;
 
     // Wrap Lucide icons into React components
-    var _lucideReact = {
-      Search: (props) =>
-        React.createElement("svg", { ...lucide.Search, ...props },
-          lucide.Search.children?.map((child, i) =>
-            React.createElement(child.tag, { key: i, ...child.attr })
-          )
-        ),
-      Plus: (props) =>
-        React.createElement("svg", { ...lucide.Plus, ...props },
-          lucide.Plus.children?.map((child, i) =>
-            React.createElement(child.tag, { key: i, ...child.attr })
-          )
-        ),
-      Filter: (props) =>
-        React.createElement("svg", { ...lucide.Filter, ...props },
-          lucide.Filter.children?.map((child, i) =>
-            React.createElement(child.tag, { key: i, ...child.attr })
-          )
-        ),
-    };
-
+    var _lucideReact = {};
+    Object.keys(lucide).forEach(function (iconName) {
+      var iconDef = lucide[iconName];
+      _lucideReact[iconName] = function IconComponent(props) {
+        return React.createElement(
+          "svg",
+          { ...iconDef.attr, ...props },
+          iconDef.children &&
+            iconDef.children.map(function (child, i) {
+              return React.createElement(child.tag, { key: i, ...child.attr });
+            })
+        );
+      };
+    });
+    
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
