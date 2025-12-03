@@ -1,20 +1,41 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "lucide-react"], factory);
+    define(["exports", "react", "lucide"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("lucide-react"));
+    factory(exports, require("react"), require("lucide"));
   } else {
     var mod = { exports: {} };
-    factory(mod.exports, global.react, global.lucideReact);
+    factory(mod.exports, global.react, global.lucide);
     global.repl = mod.exports;
   }
 })(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this,
-  function (_exports, _react, _lucideReact) {
+  function (_exports, _react, _lucide) {
     "use strict";
 
-    // Force React and Lucide global mapping for hooks
+    // Force React global mapping
     var _react = React;
-    var _lucideReact = lucide;
+
+    // Wrap Lucide icons into React components
+    var _lucideReact = {
+      Search: (props) =>
+        React.createElement("svg", { ...lucide.Search, ...props },
+          lucide.Search.children?.map((child, i) =>
+            React.createElement(child.tag, { key: i, ...child.attr })
+          )
+        ),
+      Plus: (props) =>
+        React.createElement("svg", { ...lucide.Plus, ...props },
+          lucide.Plus.children?.map((child, i) =>
+            React.createElement(child.tag, { key: i, ...child.attr })
+          )
+        ),
+      Filter: (props) =>
+        React.createElement("svg", { ...lucide.Filter, ...props },
+          lucide.Filter.children?.map((child, i) =>
+            React.createElement(child.tag, { key: i, ...child.attr })
+          )
+        ),
+    };
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
