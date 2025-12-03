@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Macro Moon Database</title>
+  <title>Moon Macro Database</title>
 
   <!-- React & ReactDOM (UMD builds) -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -33,10 +33,17 @@
   <script>
     async function loadAndRunJSX() {
       const jsxUrl =
-        "https://raw.githubusercontent.com/azoschke/macro-moon-database/main/ffxiv-with-job-icons.jsx";
+        "https://raw.githubusercontent.com/azoschke/moon-macro-database/main/ffxiv-with-job-icons.jsx";
 
       try {
         const code = await fetch(jsxUrl).then(r => r.text());
+
+        // If GitHub returned HTML instead of JS/JSX
+        if (code.startsWith("<!DOCTYPE") || code.startsWith("<html")) {
+          document.getElementById("root").innerText =
+            "Error: GitHub returned HTML (likely 404). Check the raw JSX file URL.";
+          return;
+        }
 
         // Compile JSX → JS
         const compiled = Babel.transform(code, { presets: ["react"] }).code;
