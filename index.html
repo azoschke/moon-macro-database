@@ -14,55 +14,16 @@
 
   <!-- Lucide Icons -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #app {
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .error {
-      color: red;
-      white-space: pre-wrap;
-    }
-  </style>
 </head>
 <body>
   <h1>FFXIV Macro Database</h1>
   <div id="app">Loading...</div>
 
-  <script type="text/javascript">
-    async function loadJSX() {
-      const jsxUrl = "./ffxiv-with-job-icons.jsx"; // local file in repo
-
-      try {
-        const response = await fetch(jsxUrl);
-        if (!response.ok) throw new Error("HTTP " + response.status);
-
-        const jsxText = await response.text();
-
-        const compiled = Babel.transform(jsxText, {
-          presets: ["env", "react"]
-        }).code;
-
-        eval(compiled);
-
-        // Render your component
-        const root = ReactDOM.createRoot(document.getElementById("app"));
-        root.render(React.createElement(FFXIVMacroDatabase));
-
-      } catch (err) {
-        console.error(err);
-        document.getElementById("app").innerHTML =
-          "<div class='error'>Error loading JSX:\n" + err + "</div>";
-      }
-    }
-
-    loadJSX();
+  <!-- Load JSX directly -->
+  <script type="text/babel" src="./ffxiv-with-job-icons.js"></script>
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.getElementById("app"));
+    root.render(<FFXIVMacroDatabase />);
   </script>
 </body>
 </html>
