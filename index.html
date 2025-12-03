@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FFXIV Macro Database</title>
 
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- React and ReactDOM (production builds for deployment) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Lucide icons -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-  <div id="app">Test</div>
+  <div id="app"></div>
 
-  <script type="text/babel" src="test.jsx"></script>
-  <script type="text/babel">
+  <!-- Load your transpiled JS file -->
+  <script src="ffxiv-with-job-icons.js"></script>
+
+  <!-- Mount the app -->
+  <script>
     const root = ReactDOM.createRoot(document.getElementById("app"));
-    root.render(<FFXIVMacroDatabase />);
+    root.render(React.createElement(FFXIVMacroDatabase));
   </script>
 </body>
 </html>
