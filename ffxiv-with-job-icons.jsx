@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+const { useState, useMemo, useEffect } = React;
 import { Search, Filter, ChevronDown, ChevronUp, Copy, Check, Edit2, Save, X, Plus, Trash2, Coffee, Globe } from 'lucide-react';
 
 // Job Icons Component
@@ -1362,4 +1362,4 @@ const FFXIVMacroDatabase = () => {
   );
 };
 
-export default FFXIVMacroDatabase;
+const App = FFXIVMacroDatabase;
