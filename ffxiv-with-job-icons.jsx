@@ -18,22 +18,22 @@ const {
 // Job Icons Component
 const JobIcon = ({ job, size = 16, className = "" }) => {
   const jobIcons = {
-    Carpenter: "🔨",
-    Alchemist: "⚗️",
-    Armorer: "🛡️",
-    Blacksmith: "⚔️",
-    Culinarian: "🍳",
-    Goldsmith: "💍",
-    Leatherworker: "🧤",
-    Weaver: "🧵",
-    Miner: "⛏️",
-    Fisher: "🎣",
-    Botanist: "🌿"
+    Carpenter: "ðŸ”¨",
+    Alchemist: "âš—ï¸",
+    Armorer: "ðŸ›¡ï¸",
+    Blacksmith: "âš”ï¸",
+    Culinarian: "ðŸ³",
+    Goldsmith: "ðŸ’",
+    Leatherworker: "ðŸ§¤",
+    Weaver: "ðŸ§µ",
+    Miner: "â›ï¸",
+    Fisher: "ðŸŽ£",
+    Botanist: "ðŸŒ¿"
   };
   
   return (
     <span className={className} style={{ fontSize: size }}>
-      {jobIcons[job] || "🔧"}
+      {jobIcons[job] || "ðŸ”§"}
     </span>
   );
 };
@@ -499,7 +499,7 @@ const FFXIVMacroDatabase = () => {
                 onChange={(e) => setSortBy(e.target.value)}
               >
                 <option value="questName">Sort by Quest Name</option>
-                <option value="category">Sort by Class (A→D)</option>
+                <option value="category">Sort by Class (Aâ†’D)</option>
                 <option value="difficulty">Sort by Difficulty</option>
                 <option value="quality">Sort by Quality</option>
               </select>
@@ -1099,7 +1099,7 @@ const FFXIVMacroDatabase = () => {
                                style={{ boxShadow: '0 0 10px rgba(156, 163, 175, 0.5)' }}>
                             <JobIcon job={macro.dataReward.job || macro.job} size={16} />
                             <span className="text-gray-300 font-bold">I</span>
-                            <span className="text-gray-400 text-sm">×{macro.dataReward.i}</span>
+                            <span className="text-gray-400 text-sm">Ã—{macro.dataReward.i}</span>
                           </div>
                         )}
                         {macro.dataReward.ii > 0 && (
@@ -1107,7 +1107,7 @@ const FFXIVMacroDatabase = () => {
                                style={{ boxShadow: '0 0 10px rgba(250, 204, 21, 0.5)' }}>
                             <JobIcon job={macro.dataReward.job || macro.job} size={16} />
                             <span className="text-yellow-300 font-bold">II</span>
-                            <span className="text-yellow-400 text-sm">×{macro.dataReward.ii}</span>
+                            <span className="text-yellow-400 text-sm">Ã—{macro.dataReward.ii}</span>
                           </div>
                         )}
                         {macro.dataReward.iii > 0 && (
@@ -1115,7 +1115,7 @@ const FFXIVMacroDatabase = () => {
                                style={{ boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)' }}>
                             <JobIcon job={macro.dataReward.job || macro.job} size={16} />
                             <span className="text-blue-300 font-bold">III</span>
-                            <span className="text-blue-400 text-sm">×{macro.dataReward.iii}</span>
+                            <span className="text-blue-400 text-sm">Ã—{macro.dataReward.iii}</span>
                           </div>
                         )}
                         {macro.dataReward.iv > 0 && (
@@ -1123,7 +1123,7 @@ const FFXIVMacroDatabase = () => {
                                style={{ boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)' }}>
                             <JobIcon job={macro.dataReward.job || macro.job} size={16} />
                             <span className="text-purple-300 font-bold">IV</span>
-                            <span className="text-purple-400 text-sm">×{macro.dataReward.iv}</span>
+                            <span className="text-purple-400 text-sm">Ã—{macro.dataReward.iv}</span>
                           </div>
                         )}
                         {macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && (
@@ -1375,4 +1375,3 @@ const FFXIVMacroDatabase = () => {
     </div>
   );
 };
-const App = FFXIVMacroDatabase;
