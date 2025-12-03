@@ -1,23 +1,6 @@
 const { useState, useEffect, useMemo } = React;
+const { Search, Filter, ChevronDown, ChevronUp, Copy, Check, Edit2, Save, X, Plus, Trash2, Coffee, Globe } = Lucide;
 
-// Get icons from global Lucide object (loaded via CDN)
-const {
-  Search,
-  Filter,
-  ChevronDown,
-  ChevronUp,
-  Copy,
-  Check,
-  Edit2,
-  Save,
-  X,
-  Plus,
-  Trash2,
-  Coffee,
-  Globe
-} = Lucide;
-
-// Job Icons Component
 const JobIcon = ({ job, size = 16, className = "" }) => {
   const jobIcons = {
     Carpenter: "🔨",
@@ -32,7 +15,6 @@ const JobIcon = ({ job, size = 16, className = "" }) => {
     Fisher: "🎣",
     Botanist: "🌿"
   };
-
   return (
     <span className={className} style={{ fontSize: size }}>
       {jobIcons[job] || "🔧"}
@@ -1378,4 +1360,6 @@ const FFXIVMacroDatabase = () => {
   );
 };
 
-export default FFXIVMacroDatabase;
+function FFXIVMacroDatabase() {
+  // … component code …
+}
