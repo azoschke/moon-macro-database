@@ -1377,5 +1377,4 @@ const FFXIVMacroDatabase = () => {
     </div>
   );
 };
-
 const App = FFXIVMacroDatabase;
