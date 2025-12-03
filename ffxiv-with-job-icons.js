@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "lucide-react", "react/jsx-runtime"], factory);
+    define(["exports", "react", "lucide-react"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("lucide-react"), require("react/jsx-runtime"));
+    factory(exports, require("react"), require("lucide-react"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.lucideReact, global.jsxRuntime);
+    factory(mod.exports, global.react, global.lucideReact);
     global.repl = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _react, _lucideReact, _jsxRuntime) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _react, _lucideReact) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -25,6 +25,8 @@
     size = 16,
     className = ""
   }) => {
+    // Job icon images as base64 (you would need to convert your uploaded images to base64)
+    // For now, I'll create a simple icon mapping system
     const jobIcons = {
       Carpenter: "🔨",
       Alchemist: "⚗️",
@@ -38,13 +40,16 @@
       Fisher: "🎣",
       Botanist: "🌿"
     };
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+
+    // For actual implementation, you would use img tags with base64 or imported images
+    // Example: <img src={`/icons/${job}.png`} alt={job} className={className} style={{ width: size, height: size }} />
+
+    return /*#__PURE__*/_react.default.createElement("span", {
       className: className,
       style: {
         fontSize: size
-      },
-      children: jobIcons[job] || "🔧"
-    });
+      }
+    }, jobIcons[job] || "🔧");
   };
   const FFXIVMacroDatabase = () => {
     // Job list for filters and dropdowns
@@ -395,1052 +400,797 @@
         return m;
       }));
     };
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-      className: "min-h-screen bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-gray-100 p-6",
-      children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-        className: "max-w-7xl mx-auto",
-        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h1", {
-          className: "text-4xl font-bold mb-8 text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent",
-          children: "FFXIV Cosmic Exploration - Crafting & Gathering Missions"
-        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-          className: "mb-6 space-y-4",
-          children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-            className: "p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl",
-            children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "flex items-center justify-between mb-3",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("h3", {
-                className: "text-sm font-medium text-cyan-300 flex items-center gap-2",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Search, {
-                  className: "w-4 h-4"
-                }), "Search Mode"]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                onClick: () => setSearchMode(searchMode === 'numeric' ? 'text' : 'numeric'),
-                className: "px-3 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded-md transition-all text-sm border border-indigo-500/30",
-                children: ["Switch to ", searchMode === 'numeric' ? 'Text' : 'Numeric', " Search"]
-              })]
-            }), searchMode === 'numeric' ? /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "flex gap-4",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                className: "flex-1",
-                children: /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "Difficulty (exact)",
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: difficultySearch,
-                  onChange: e => setDifficultySearch(e.target.value)
-                })
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                className: "flex-1",
-                children: /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "Quality (exact)",
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: qualitySearch,
-                  onChange: e => setQualitySearch(e.target.value)
-                })
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                className: "flex-1",
-                children: /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "Durability (exact)",
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: durabilitySearch,
-                  onChange: e => setDurabilitySearch(e.target.value)
-                })
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                onClick: () => {
-                  setDifficultySearch('');
-                  setQualitySearch('');
-                  setDurabilitySearch('');
-                },
-                className: "px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 backdrop-blur-sm rounded transition-all border border-slate-600/30",
-                children: "Clear"
-              })]
-            }) : /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "relative",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Search, {
-                className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5"
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                type: "text",
-                placeholder: "Search quests, items, or data rewards...",
-                className: "w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                value: searchTerm,
-                onChange: e => setSearchTerm(e.target.value)
-              })]
-            })]
-          }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-            className: "p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl",
-            children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "flex items-center gap-2 mb-3",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Filter, {
-                className: "w-4 h-4 text-cyan-300"
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("h3", {
-                className: "text-sm font-medium text-cyan-300",
-                children: "Filters"
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "flex flex-col md:flex-row gap-4",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("select", {
-                className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                value: sortBy,
-                onChange: e => setSortBy(e.target.value),
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: "questName",
-                  children: "Sort by Quest Name"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: "category",
-                  children: "Sort by Class (A\xE2\u2020\u2019D)"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: "difficulty",
-                  children: "Sort by Difficulty"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: "quality",
-                  children: "Sort by Quality"
-                })]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
-                className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                value: filterCategory,
-                onChange: e => setFilterCategory(e.target.value),
-                children: categories.map(cat => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: cat,
-                  children: cat === 'all' ? 'All Classes' : cat
-                }, cat))
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
-                className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                value: filterLocation,
-                onChange: e => setFilterLocation(e.target.value),
-                children: locations.map(loc => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: loc,
-                  children: loc === 'all' ? 'All Locations' : loc
-                }, loc))
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("select", {
-                className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                value: filterJob,
-                onChange: e => setFilterJob(e.target.value),
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: "all",
-                  children: "All Jobs"
-                }), jobList.map(job => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                  value: job,
-                  children: job
-                }, job))]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                onClick: () => setShowAddForm(true),
-                className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-green-900/30",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Plus, {
-                  className: "w-4 h-4"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                  children: "Add New"
-                })]
-              })]
-            })]
-          })]
-        }), showAddForm && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-          className: "mb-6 p-6 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl",
-          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h2", {
-            className: "text-xl font-semibold mb-4 text-cyan-400",
-            children: "Add New Macro"
-          }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-            className: "space-y-4",
-            children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "grid grid-cols-1 md:grid-cols-3 gap-4",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                  className: "block text-sm font-medium mb-1 text-cyan-300",
-                  children: "Quest Name"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "text",
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.questName,
-                  onChange: e => updateNewMacro('questName', e.target.value)
-                })]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                  className: "block text-sm font-medium mb-1 text-cyan-300",
-                  children: "Location"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("select", {
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.location,
-                  onChange: e => updateNewMacro('location', e.target.value),
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Sinus Ardorum",
-                    children: "Sinus Ardorum"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Phaenna",
-                    children: "Phaenna"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Sinus Ardorum/Phaenna",
-                    children: "Sinus Ardorum/Phaenna"
-                  })]
-                })]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                  className: "block text-sm font-medium mb-1 text-cyan-300",
-                  children: "Job"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.job,
-                  onChange: e => updateNewMacro('job', e.target.value),
-                  children: jobList.map(job => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: job,
-                    children: job
-                  }, job))
-                })]
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "grid grid-cols-1 md:grid-cols-2 gap-4",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                  className: "block text-sm font-medium mb-1 text-cyan-300",
-                  children: "Category"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("select", {
-                  className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.category,
-                  onChange: e => updateNewMacro('category', e.target.value),
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Class D",
-                    children: "Class D"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Class C",
-                    children: "Class C"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Class B",
-                    children: "Class B"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Class A",
-                    children: "Class A"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Class A Expert",
-                    children: "Class A Expert"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Sequential",
-                    children: "Sequential"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Time-Restricted",
-                    children: "Time-Restricted"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                    value: "Critical",
-                    children: "Critical"
-                  })]
-                })]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                  className: "block text-sm font-medium mb-1 text-cyan-300",
-                  children: "Food"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  className: "flex gap-2",
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                    type: "checkbox",
-                    className: "mt-2 accent-cyan-500",
-                    checked: newMacro.foodRequired,
-                    onChange: e => updateNewMacro('foodRequired', e.target.checked)
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
-                    className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                    value: newMacro.foodType,
-                    onChange: e => updateNewMacro('foodType', e.target.value),
-                    disabled: !newMacro.foodRequired,
-                    children: foodList.map(food => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                      value: food,
-                      children: food
-                    }, food))
-                  })]
-                })]
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("label", {
-                className: "block text-sm font-medium mb-1 text-cyan-300",
-                children: ["Data Reward (", newMacro.job, ")"]
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                className: "grid grid-cols-4 gap-2",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "I",
-                  className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.dataReward.i,
-                  onChange: e => updateNewMacro('dataReward', {
-                    ...newMacro.dataReward,
-                    i: e.target.value
-                  })
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "II",
-                  className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.dataReward.ii,
-                  onChange: e => updateNewMacro('dataReward', {
-                    ...newMacro.dataReward,
-                    ii: e.target.value
-                  })
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "III",
-                  className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.dataReward.iii,
-                  onChange: e => updateNewMacro('dataReward', {
-                    ...newMacro.dataReward,
-                    iii: e.target.value
-                  })
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  placeholder: "IV",
-                  className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  value: newMacro.dataReward.iv,
-                  onChange: e => updateNewMacro('dataReward', {
-                    ...newMacro.dataReward,
-                    iv: e.target.value
-                  })
-                })]
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                className: "flex items-center justify-between mb-2",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                  className: "block text-sm font-medium text-cyan-300",
-                  children: "Items"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                  onClick: addNewItem,
-                  className: "px-2 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded text-sm border border-indigo-500/30 transition-all",
-                  children: "Add Item"
-                })]
-              }), newMacro.items.map((item, index) => /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                className: "flex gap-2 mb-2",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "text",
-                  className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  placeholder: "Item Name",
-                  value: item.name,
-                  onChange: e => updateNewMacroItem(index, 'name', e.target.value)
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  placeholder: "Difficulty",
-                  value: item.difficulty,
-                  onChange: e => updateNewMacroItem(index, 'difficulty', e.target.value)
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  placeholder: "Quality",
-                  value: item.quality,
-                  onChange: e => updateNewMacroItem(index, 'quality', e.target.value)
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  type: "number",
-                  className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                  placeholder: "Durability",
-                  value: item.durability,
-                  onChange: e => updateNewMacroItem(index, 'durability', e.target.value)
-                }), newMacro.items.length > 1 && /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                  onClick: () => removeNewItem(index),
-                  className: "px-2 py-2 bg-red-600/50 hover:bg-red-600/70 backdrop-blur-sm rounded border border-red-500/30 transition-all",
-                  children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.X, {
-                    className: "w-4 h-4"
-                  })
-                })]
-              }, index))]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                className: "block text-sm font-medium mb-1 text-cyan-300",
-                children: "Macro"
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("textarea", {
-                className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all font-mono text-sm",
-                rows: 6,
-                value: newMacro.macro,
-                onChange: e => updateNewMacro('macro', e.target.value),
-                placeholder: "/ac \"Muscle Memory\" <wait.3>"
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                className: "block text-sm font-medium mb-1 text-cyan-300",
-                children: "Notes"
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("textarea", {
-                className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
-                rows: 2,
-                value: newMacro.notes,
-                onChange: e => updateNewMacro('notes', e.target.value),
-                placeholder: "Stats: 5811/5332/633. Additional notes..."
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "flex gap-2 justify-end",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                onClick: () => setShowAddForm(false),
-                className: "px-4 py-2 bg-slate-600/50 hover:bg-slate-600/70 backdrop-blur-sm rounded transition-all border border-slate-500/30",
-                children: "Cancel"
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                onClick: addNewMacro,
-                disabled: !newMacro.questName || !newMacro.items[0].name,
-                className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-900/30",
-                children: "Add Macro"
-              })]
-            })]
-          })]
-        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-          className: "mb-4 text-cyan-300",
-          children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-            children: ["Found ", filteredMacros.length, " mission", filteredMacros.length !== 1 ? 's' : '']
-          }), searchMode === 'numeric' && (difficultySearch || qualitySearch || durabilitySearch) && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-            className: "text-sm mt-1",
-            children: ["Searching for exact matches:", difficultySearch && /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-              className: "ml-2 text-orange-400",
-              children: ["Difficulty = ", difficultySearch]
-            }), qualitySearch && /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-              className: "ml-2 text-green-400",
-              children: ["Quality = ", qualitySearch]
-            }), durabilitySearch && /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-              className: "ml-2 text-red-400",
-              children: ["Durability = ", durabilitySearch]
-            })]
-          })]
-        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-          className: "space-y-4",
-          children: filteredMacros.map(macro => {
-            var _document$getElementB;
-            return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-              className: "bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 overflow-hidden group shadow-xl",
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                className: "p-4 cursor-pointer hover:bg-slate-700/30 transition-all",
-                onClick: () => toggleExpanded(macro.id),
-                children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  className: "flex items-center justify-between",
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex-1",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex items-center gap-2 mb-2",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h3", {
-                        className: "text-xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent",
-                        children: macro.questName
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                        onClick: e => {
-                          e.stopPropagation();
-                          setEditingGeneral(macro.id);
-                        },
-                        className: "p-1 hover:bg-slate-600/50 rounded opacity-0 group-hover:opacity-100 transition-all",
-                        children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Edit2, {
-                          className: "w-4 h-4 text-cyan-400"
-                        })
-                      })]
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex flex-wrap gap-2 mb-2",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                        className: "px-2 py-1 bg-indigo-500/20 text-indigo-300 rounded-md text-sm flex items-center gap-1 border border-indigo-500/30",
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Globe, {
-                          className: "w-3 h-3"
-                        }), macro.location]
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                        className: "px-2 py-1 bg-purple-500/20 text-purple-300 rounded-md text-sm flex items-center gap-1 border border-purple-500/30",
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(JobIcon, {
-                          job: macro.job,
-                          size: 12
-                        }), macro.job]
-                      })]
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex flex-wrap gap-2 items-center",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                        className: "text-sm text-cyan-300",
-                        children: "Crafts:"
-                      }), macro.items.map((item, idx) => /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                        onClick: e => {
-                          e.stopPropagation();
-                          copyItemMacro(macro.id, idx);
-                        },
-                        className: "px-2 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded-md text-sm transition-all flex items-center gap-1 border border-slate-600/50",
-                        children: copiedItemId === `${macro.id}-${idx}` ? /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-                          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Check, {
-                            className: "w-3 h-3 text-green-400"
-                          }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: "text-green-400",
-                            children: item.name
-                          })]
-                        }) : /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-                          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Copy, {
-                            className: "w-3 h-3 text-slate-400"
-                          }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            children: item.name
-                          })]
-                        })
-                      }, idx))]
-                    })]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex items-center gap-2",
-                    children: [macro.foodRequired && macro.foodType !== 'None' && /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                      className: "flex items-center gap-1 px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded-md text-sm border border-emerald-500/30",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Coffee, {
-                        className: "w-3 h-3"
-                      }), macro.foodType]
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                      className: `text-sm px-2 py-1 rounded border ${macro.category.includes('Class A') && !macro.category.includes('Expert') ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' : macro.category === 'Class A Expert' ? 'bg-red-500/20 text-red-300 border-red-500/30' : macro.category === 'Class B' ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : macro.category === 'Class C' ? 'bg-green-500/20 text-green-300 border-green-500/30' : macro.category === 'Class D' ? 'bg-slate-500/20 text-slate-300 border-slate-500/30' : macro.category === 'Sequential' ? 'bg-orange-500/20 text-orange-300 border-orange-500/30' : macro.category === 'Time-Restricted' ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' : macro.category === 'Critical' ? 'bg-red-600/20 text-red-300 border-red-600/30' : 'bg-slate-500/20 text-slate-300 border-slate-500/30'}`,
-                      children: macro.category
-                    }), expandedMacros[macro.id] ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.ChevronUp, {
-                      className: "w-5 h-5 text-cyan-400"
-                    }) : /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.ChevronDown, {
-                      className: "w-5 h-5 text-cyan-400"
-                    })]
-                  })]
-                })
-              }), editingGeneral === macro.id && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                className: "border-t border-slate-700/50 p-4 bg-slate-900/30",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-4",
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                      className: "block text-sm font-medium mb-1 text-cyan-300",
-                      children: "Quest Name"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "text",
-                      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
-                      defaultValue: macro.questName,
-                      id: `questName-${macro.id}`
-                    })]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                      className: "block text-sm font-medium mb-1 text-cyan-300",
-                      children: "Location"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("select", {
-                      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
-                      defaultValue: macro.location,
-                      id: `location-${macro.id}`,
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Sinus Ardorum",
-                        children: "Sinus Ardorum"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Phaenna",
-                        children: "Phaenna"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Sinus Ardorum/Phaenna",
-                        children: "Sinus Ardorum/Phaenna"
-                      })]
-                    })]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                      className: "block text-sm font-medium mb-1 text-cyan-300",
-                      children: "Job"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
-                      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
-                      defaultValue: macro.job,
-                      id: `job-${macro.id}`,
-                      children: jobList.map(job => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: job,
-                        children: job
-                      }, job))
-                    })]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                      className: "block text-sm font-medium mb-1 text-cyan-300",
-                      children: "Category"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("select", {
-                      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
-                      defaultValue: macro.category,
-                      id: `category-${macro.id}`,
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Class D",
-                        children: "Class D"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Class C",
-                        children: "Class C"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Class B",
-                        children: "Class B"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Class A",
-                        children: "Class A"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Class A Expert",
-                        children: "Class A Expert"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Sequential",
-                        children: "Sequential"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Time-Restricted",
-                        children: "Time-Restricted"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                        value: "Critical",
-                        children: "Critical"
-                      })]
-                    })]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                      className: "block text-sm font-medium mb-1 text-cyan-300",
-                      children: "Food"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex gap-2",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                        type: "checkbox",
-                        className: "mt-2 accent-cyan-500",
-                        defaultChecked: macro.foodRequired,
-                        id: `foodRequired-${macro.id}`
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
-                        className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
-                        defaultValue: macro.foodType,
-                        id: `foodType-${macro.id}`,
-                        children: foodList.map(food => /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
-                          value: food,
-                          children: food
-                        }, food))
-                      })]
-                    })]
-                  })]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  className: "mb-4",
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-                    className: "block text-sm font-medium mb-1 text-cyan-300",
-                    children: "Craft Requirements"
-                  }), macro.items.map((item, idx) => /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex gap-2 mb-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "text",
-                      className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: item.name,
-                      id: `itemName-${macro.id}-${idx}`
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: item.difficulty,
-                      id: `itemDifficulty-${macro.id}-${idx}`
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: item.quality,
-                      id: `itemQuality-${macro.id}-${idx}`
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: item.durability,
-                      id: `itemDurability-${macro.id}-${idx}`
-                    })]
-                  }, idx))]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  className: "mb-4",
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("label", {
-                    className: "block text-sm font-medium mb-1 text-cyan-300",
-                    children: ["Data Reward (", ((_document$getElementB = document.getElementById(`job-${macro.id}`)) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || macro.dataReward.job, ")"]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "grid grid-cols-4 gap-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      placeholder: "I",
-                      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: macro.dataReward.i,
-                      id: `dataRewardI-${macro.id}`
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      placeholder: "II",
-                      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: macro.dataReward.ii,
-                      id: `dataRewardII-${macro.id}`
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      placeholder: "III",
-                      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: macro.dataReward.iii,
-                      id: `dataRewardIII-${macro.id}`
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                      type: "number",
-                      placeholder: "IV",
-                      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
-                      defaultValue: macro.dataReward.iv,
-                      id: `dataRewardIV-${macro.id}`
-                    })]
-                  })]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  className: "flex gap-2 justify-end",
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                    onClick: () => setEditingGeneral(null),
-                    className: "px-4 py-2 bg-slate-600/50 hover:bg-slate-600/70 backdrop-blur-sm rounded transition-all border border-slate-500/30",
-                    children: "Cancel"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                    onClick: () => {
-                      const job = document.getElementById(`job-${macro.id}`).value;
-                      const updates = {
-                        questName: document.getElementById(`questName-${macro.id}`).value,
-                        location: document.getElementById(`location-${macro.id}`).value,
-                        job: job,
-                        category: document.getElementById(`category-${macro.id}`).value,
-                        foodRequired: document.getElementById(`foodRequired-${macro.id}`).checked,
-                        foodType: document.getElementById(`foodType-${macro.id}`).value,
-                        items: macro.items.map((item, idx) => ({
-                          name: document.getElementById(`itemName-${macro.id}-${idx}`).value,
-                          difficulty: parseInt(document.getElementById(`itemDifficulty-${macro.id}-${idx}`).value) || 0,
-                          quality: parseInt(document.getElementById(`itemQuality-${macro.id}-${idx}`).value) || 0,
-                          durability: parseInt(document.getElementById(`itemDurability-${macro.id}-${idx}`).value) || 0
-                        })),
-                        dataReward: {
-                          job: job,
-                          i: parseInt(document.getElementById(`dataRewardI-${macro.id}`).value) || 0,
-                          ii: parseInt(document.getElementById(`dataRewardII-${macro.id}`).value) || 0,
-                          iii: parseInt(document.getElementById(`dataRewardIII-${macro.id}`).value) || 0,
-                          iv: parseInt(document.getElementById(`dataRewardIV-${macro.id}`).value) || 0
-                        }
-                      };
-                      saveGeneralEdit(macro.id, updates);
-                    },
-                    className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all shadow-lg shadow-green-900/30",
-                    children: "Save"
-                  })]
-                })]
-              }), expandedMacros[macro.id] && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                className: "border-t border-slate-700/50 p-4 space-y-4",
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex items-center justify-between mb-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h4", {
-                      className: "font-semibold text-cyan-300",
-                      children: "Craft Requirements"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                      onClick: () => addItemToMacro(macro.id),
-                      className: "px-2 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded text-sm border border-indigo-500/30 transition-all",
-                      children: "Add Item"
-                    })]
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                    className: "grid grid-cols-1 md:grid-cols-3 gap-4",
-                    children: macro.items.map((item, idx) => /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "bg-slate-700/30 p-3 rounded-lg relative border border-slate-600/50",
-                      children: [macro.items.length > 1 && /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                        onClick: () => removeItemFromMacro(macro.id, idx),
-                        className: "absolute top-2 right-2 p-1 bg-red-600/50 hover:bg-red-600/70 rounded border border-red-500/30",
-                        children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.X, {
-                          className: "w-3 h-3"
-                        })
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-                        className: "font-medium text-cyan-300 pr-6",
-                        children: item.name
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                        className: "space-y-1 text-sm mt-2",
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("p", {
-                          children: ["Difficulty: ", /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: `text-orange-400 ${searchMode === 'numeric' && difficultySearch && item.difficulty === parseInt(difficultySearch) ? 'font-bold bg-orange-500/20 px-1 rounded' : ''}`,
-                            children: item.difficulty
-                          })]
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("p", {
-                          children: ["Quality: ", /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: `text-green-400 ${searchMode === 'numeric' && qualitySearch && item.quality === parseInt(qualitySearch) ? 'font-bold bg-green-500/20 px-1 rounded' : ''}`,
-                            children: item.quality
-                          })]
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("p", {
-                          children: ["Durability: ", /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: `text-red-400 ${searchMode === 'numeric' && durabilitySearch && item.durability === parseInt(durabilitySearch) ? 'font-bold bg-red-500/20 px-1 rounded' : ''}`,
-                            children: item.durability
-                          })]
-                        })]
-                      })]
-                    }, idx))
-                  })]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h4", {
-                    className: "font-semibold mb-2 text-cyan-300",
-                    children: "Data Reward"
-                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                    className: "bg-slate-700/30 p-3 rounded-lg border border-slate-600/50",
-                    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex flex-wrap gap-3",
-                      children: [macro.dataReward.i > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                        className: "flex items-center gap-2 px-3 py-1 bg-gray-600/30 rounded-md border border-gray-500/50",
-                        style: {
-                          boxShadow: '0 0 10px rgba(156, 163, 175, 0.5)'
-                        },
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(JobIcon, {
-                          job: macro.dataReward.job || macro.job,
-                          size: 16
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                          className: "text-gray-300 font-bold",
-                          children: "I"
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                          className: "text-gray-400 text-sm",
-                          children: ["\xC3\u2014", macro.dataReward.i]
-                        })]
-                      }), macro.dataReward.ii > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                        className: "flex items-center gap-2 px-3 py-1 bg-yellow-600/30 rounded-md border border-yellow-500/50",
-                        style: {
-                          boxShadow: '0 0 10px rgba(250, 204, 21, 0.5)'
-                        },
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(JobIcon, {
-                          job: macro.dataReward.job || macro.job,
-                          size: 16
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                          className: "text-yellow-300 font-bold",
-                          children: "II"
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                          className: "text-yellow-400 text-sm",
-                          children: ["\xC3\u2014", macro.dataReward.ii]
-                        })]
-                      }), macro.dataReward.iii > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                        className: "flex items-center gap-2 px-3 py-1 bg-blue-600/30 rounded-md border border-blue-500/50",
-                        style: {
-                          boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)'
-                        },
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(JobIcon, {
-                          job: macro.dataReward.job || macro.job,
-                          size: 16
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                          className: "text-blue-300 font-bold",
-                          children: "III"
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                          className: "text-blue-400 text-sm",
-                          children: ["\xC3\u2014", macro.dataReward.iii]
-                        })]
-                      }), macro.dataReward.iv > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                        className: "flex items-center gap-2 px-3 py-1 bg-purple-600/30 rounded-md border border-purple-500/50",
-                        style: {
-                          boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)'
-                        },
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(JobIcon, {
-                          job: macro.dataReward.job || macro.job,
-                          size: 16
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                          className: "text-purple-300 font-bold",
-                          children: "IV"
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
-                          className: "text-purple-400 text-sm",
-                          children: ["\xC3\u2014", macro.dataReward.iv]
-                        })]
-                      }), macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                        className: "text-slate-400 text-sm",
-                        children: "No data rewards"
-                      })]
-                    })
-                  })]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex items-center justify-between mb-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("h4", {
-                      className: "font-semibold text-cyan-300",
-                      children: ["Macro", macro.macros && macro.macros.length > 1 ? 's' : '']
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex gap-2",
-                      children: [editingId !== macro.id && /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                          onClick: e => {
-                            e.stopPropagation();
-                            startEditing(macro.id, macro.macros ? macro.macros[0].macro : macro.macro);
-                            setEditingMacroIndex(0);
-                          },
-                          className: "flex items-center gap-2 px-3 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded transition-all border border-slate-600/50",
-                          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Edit2, {
-                            className: "w-4 h-4"
-                          }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: "text-sm",
-                            children: "Edit"
-                          })]
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                          onClick: e => {
-                            e.stopPropagation();
-                            copyMacro(macro.id, macro.macros ? macro.macros[0].macro : macro.macro);
-                          },
-                          className: "flex items-center gap-2 px-3 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded transition-all border border-slate-600/50",
-                          children: copiedId === macro.id ? /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-                            children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Check, {
-                              className: "w-4 h-4 text-green-400"
-                            }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                              className: "text-sm text-green-400",
-                              children: "Copied!"
-                            })]
-                          }) : /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-                            children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Copy, {
-                              className: "w-4 h-4"
-                            }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                              className: "text-sm",
-                              children: "Copy"
-                            })]
-                          })
-                        })]
-                      }), editingId === macro.id && /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                          onClick: e => {
-                            e.stopPropagation();
-                            if (macro.macros) {
-                              const updatedMacros = [...macro.macros];
-                              updatedMacros[editingMacroIndex] = {
-                                ...updatedMacros[editingMacroIndex],
-                                macro: editedMacro
-                              };
-                              setMacros(prev => prev.map(m => m.id === macro.id ? {
-                                ...m,
-                                macros: updatedMacros
-                              } : m));
-                            } else {
-                              saveEdit(macro.id);
-                            }
-                            setEditingId(null);
-                            setEditedMacro('');
-                          },
-                          className: "flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all",
-                          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Save, {
-                            className: "w-4 h-4"
-                          }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: "text-sm",
-                            children: "Save"
-                          })]
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                          onClick: e => {
-                            e.stopPropagation();
-                            cancelEdit();
-                          },
-                          className: "flex items-center gap-2 px-3 py-1 bg-red-600/50 hover:bg-red-600/70 rounded transition-all border border-red-500/30",
-                          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.X, {
-                            className: "w-4 h-4"
-                          }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                            className: "text-sm",
-                            children: "Cancel"
-                          })]
-                        })]
-                      })]
-                    })]
-                  }), editingId === macro.id ? /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "space-y-2",
-                    children: [macro.macros && editingMacroIndex < macro.macros.length && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "text-sm text-cyan-300",
-                      children: ["Editing macro for: ", macro.macros[editingMacroIndex].itemName]
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("textarea", {
-                      value: editedMacro,
-                      onChange: e => setEditedMacro(e.target.value),
-                      className: "w-full bg-slate-900/50 p-3 rounded-lg text-sm font-mono border border-slate-600/50 focus:outline-none focus:border-cyan-500",
-                      rows: 10,
-                      onClick: e => e.stopPropagation()
-                    })]
-                  }) : /*#__PURE__*/(0, _jsxRuntime.jsx)(_jsxRuntime.Fragment, {
-                    children: macro.macros ? /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                      className: "space-y-4",
-                      children: macro.macros.map((macroItem, idx) => /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                        className: "bg-slate-900/50 rounded-lg p-3 border border-slate-600/50",
-                        children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                          className: "flex items-center justify-between mb-2",
-                          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h5", {
-                            className: "text-sm font-medium text-cyan-300",
-                            children: macroItem.itemName
-                          }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                            className: "flex gap-2",
-                            children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                              onClick: e => {
-                                e.stopPropagation();
-                                startEditing(macro.id, macroItem.macro);
-                                setEditingMacroIndex(idx);
-                              },
-                              className: "p-1 hover:bg-slate-700/50 rounded",
-                              children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Edit2, {
-                                className: "w-3 h-3 text-cyan-400"
-                              })
-                            }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                              onClick: e => {
-                                e.stopPropagation();
-                                copyMacro(`${macro.id}-${idx}`, macroItem.macro);
-                              },
-                              className: "p-1 hover:bg-slate-700/50 rounded",
-                              children: copiedId === `${macro.id}-${idx}` ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Check, {
-                                className: "w-3 h-3 text-green-400"
-                              }) : /*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Copy, {
-                                className: "w-3 h-3"
-                              })
-                            })]
-                          })]
-                        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("pre", {
-                          className: "text-sm font-mono overflow-x-auto text-gray-300",
-                          children: macroItem.macro
-                        })]
-                      }, idx))
-                    }) : /*#__PURE__*/(0, _jsxRuntime.jsx)("pre", {
-                      className: "bg-slate-900/50 p-3 rounded-lg text-sm font-mono overflow-x-auto border border-slate-600/50 text-gray-300",
-                      children: macro.macro
-                    })
-                  })]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                  children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex items-center justify-between mb-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h4", {
-                      className: "font-semibold text-cyan-300",
-                      children: "Notes"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                      onClick: e => {
-                        e.stopPropagation();
-                        setEditingNotes(macro.id);
-                        setEditedNotes(macro.notes || '');
-                      },
-                      className: "flex items-center gap-2 px-3 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded transition-all border border-slate-600/50",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Edit2, {
-                        className: "w-4 h-4"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                        className: "text-sm",
-                        children: "Edit"
-                      })]
-                    })]
-                  }), editingNotes === macro.id ? /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "space-y-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("textarea", {
-                      value: editedNotes,
-                      onChange: e => setEditedNotes(e.target.value),
-                      className: "w-full bg-slate-700/30 p-3 rounded text-gray-300 border border-slate-600/50",
-                      rows: 3
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                      className: "flex gap-2",
-                      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                        onClick: () => {
-                          setMacros(prev => prev.map(m => m.id === macro.id ? {
-                            ...m,
-                            notes: editedNotes
-                          } : m));
-                          setEditingNotes(null);
-                          setEditedNotes('');
-                        },
-                        className: "px-3 py-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded",
-                        children: "Save"
-                      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                        onClick: () => {
-                          setEditingNotes(null);
-                          setEditedNotes('');
-                        },
-                        className: "px-3 py-1 bg-red-600/50 hover:bg-red-600/70 rounded border border-red-500/30",
-                        children: "Cancel"
-                      })]
-                    })]
-                  }) : /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-                    className: "text-gray-400",
-                    children: macro.notes || 'No notes added.'
-                  })]
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-                  className: "pt-4 border-t border-slate-700/50",
-                  children: deleteConfirm === macro.id ? /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-                    className: "flex items-center justify-center gap-2",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                      className: "text-red-400",
-                      children: "Are you sure?"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                      onClick: () => deleteMacro(macro.id),
-                      className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all",
-                      children: "Yes"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
-                      onClick: () => setDeleteConfirm(null),
-                      className: "px-4 py-2 bg-red-600/50 hover:bg-red-600/70 rounded transition-all border border-red-500/30",
-                      children: "No"
-                    })]
-                  }) : /*#__PURE__*/(0, _jsxRuntime.jsxs)("button", {
-                    onClick: () => setDeleteConfirm(macro.id),
-                    className: "w-full px-4 py-2 bg-red-600/30 hover:bg-red-600/50 backdrop-blur-sm rounded transition-all flex items-center justify-center gap-2 border border-red-500/30",
-                    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_lucideReact.Trash2, {
-                      className: "w-4 h-4"
-                    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-                      children: "Delete Entry"
-                    })]
-                  })
-                })]
-              })]
-            }, macro.id);
-          })
-        }), macros.length === 0 && /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-          className: "text-center py-12",
-          children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-            className: "text-cyan-300 text-lg",
-            children: "No data"
-          })
-        }), macros.length > 0 && filteredMacros.length === 0 && /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-          className: "text-center py-12",
-          children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-            className: "text-cyan-300",
-            children: "No missions found matching your criteria."
-          })
-        })]
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: "min-h-screen bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-gray-100 p-6"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "max-w-7xl mx-auto"
+    }, /*#__PURE__*/_react.default.createElement("h1", {
+      className: "text-4xl font-bold mb-8 text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+    }, "FFXIV Cosmic Exploration - Crafting & Gathering Missions"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "mb-6 space-y-4"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex items-center justify-between mb-3"
+    }, /*#__PURE__*/_react.default.createElement("h3", {
+      className: "text-sm font-medium text-cyan-300 flex items-center gap-2"
+    }, /*#__PURE__*/_react.default.createElement(_lucideReact.Search, {
+      className: "w-4 h-4"
+    }), "Search Mode"), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => setSearchMode(searchMode === 'numeric' ? 'text' : 'numeric'),
+      className: "px-3 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded-md transition-all text-sm border border-indigo-500/30"
+    }, "Switch to ", searchMode === 'numeric' ? 'Text' : 'Numeric', " Search")), searchMode === 'numeric' ? /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex gap-4"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex-1"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "Difficulty (exact)",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: difficultySearch,
+      onChange: e => setDifficultySearch(e.target.value)
+    })), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex-1"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "Quality (exact)",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: qualitySearch,
+      onChange: e => setQualitySearch(e.target.value)
+    })), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex-1"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "Durability (exact)",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: durabilitySearch,
+      onChange: e => setDurabilitySearch(e.target.value)
+    })), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => {
+        setDifficultySearch('');
+        setQualitySearch('');
+        setDurabilitySearch('');
+      },
+      className: "px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 backdrop-blur-sm rounded transition-all border border-slate-600/30"
+    }, "Clear")) : /*#__PURE__*/_react.default.createElement("div", {
+      className: "relative"
+    }, /*#__PURE__*/_react.default.createElement(_lucideReact.Search, {
+      className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5"
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "text",
+      placeholder: "Search quests, items, or data rewards...",
+      className: "w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: searchTerm,
+      onChange: e => setSearchTerm(e.target.value)
+    }))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex items-center gap-2 mb-3"
+    }, /*#__PURE__*/_react.default.createElement(_lucideReact.Filter, {
+      className: "w-4 h-4 text-cyan-300"
+    }), /*#__PURE__*/_react.default.createElement("h3", {
+      className: "text-sm font-medium text-cyan-300"
+    }, "Filters")), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex flex-col md:flex-row gap-4"
+    }, /*#__PURE__*/_react.default.createElement("select", {
+      className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: sortBy,
+      onChange: e => setSortBy(e.target.value)
+    }, /*#__PURE__*/_react.default.createElement("option", {
+      value: "questName"
+    }, "Sort by Quest Name"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "category"
+    }, "Sort by Class (A\u2192D)"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "difficulty"
+    }, "Sort by Difficulty"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "quality"
+    }, "Sort by Quality")), /*#__PURE__*/_react.default.createElement("select", {
+      className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: filterCategory,
+      onChange: e => setFilterCategory(e.target.value)
+    }, categories.map(cat => /*#__PURE__*/_react.default.createElement("option", {
+      key: cat,
+      value: cat
+    }, cat === 'all' ? 'All Classes' : cat))), /*#__PURE__*/_react.default.createElement("select", {
+      className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: filterLocation,
+      onChange: e => setFilterLocation(e.target.value)
+    }, locations.map(loc => /*#__PURE__*/_react.default.createElement("option", {
+      key: loc,
+      value: loc
+    }, loc === 'all' ? 'All Locations' : loc))), /*#__PURE__*/_react.default.createElement("select", {
+      className: "px-4 py-2 bg-slate-900/50 border border-slate-600/50 rounded-lg focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: filterJob,
+      onChange: e => setFilterJob(e.target.value)
+    }, /*#__PURE__*/_react.default.createElement("option", {
+      value: "all"
+    }, "All Jobs"), jobList.map(job => /*#__PURE__*/_react.default.createElement("option", {
+      key: job,
+      value: job
+    }, job))), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => setShowAddForm(true),
+      className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-green-900/30"
+    }, /*#__PURE__*/_react.default.createElement(_lucideReact.Plus, {
+      className: "w-4 h-4"
+    }), /*#__PURE__*/_react.default.createElement("span", null, "Add New"))))), showAddForm && /*#__PURE__*/_react.default.createElement("div", {
+      className: "mb-6 p-6 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      className: "text-xl font-semibold mb-4 text-cyan-400"
+    }, "Add New Macro"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "space-y-4"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "grid grid-cols-1 md:grid-cols-3 gap-4"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Quest Name"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "text",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.questName,
+      onChange: e => updateNewMacro('questName', e.target.value)
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Location"), /*#__PURE__*/_react.default.createElement("select", {
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.location,
+      onChange: e => updateNewMacro('location', e.target.value)
+    }, /*#__PURE__*/_react.default.createElement("option", {
+      value: "Sinus Ardorum"
+    }, "Sinus Ardorum"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Phaenna"
+    }, "Phaenna"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Sinus Ardorum/Phaenna"
+    }, "Sinus Ardorum/Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Job"), /*#__PURE__*/_react.default.createElement("select", {
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.job,
+      onChange: e => updateNewMacro('job', e.target.value)
+    }, jobList.map(job => /*#__PURE__*/_react.default.createElement("option", {
+      key: job,
+      value: job
+    }, job))))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "grid grid-cols-1 md:grid-cols-2 gap-4"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Category"), /*#__PURE__*/_react.default.createElement("select", {
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.category,
+      onChange: e => updateNewMacro('category', e.target.value)
+    }, /*#__PURE__*/_react.default.createElement("option", {
+      value: "Class D"
+    }, "Class D"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Class C"
+    }, "Class C"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Class B"
+    }, "Class B"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Class A"
+    }, "Class A"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Class A Expert"
+    }, "Class A Expert"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Sequential"
+    }, "Sequential"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Time-Restricted"
+    }, "Time-Restricted"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Critical"
+    }, "Critical"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Food"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex gap-2"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      type: "checkbox",
+      className: "mt-2 accent-cyan-500",
+      checked: newMacro.foodRequired,
+      onChange: e => updateNewMacro('foodRequired', e.target.checked)
+    }), /*#__PURE__*/_react.default.createElement("select", {
+      className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.foodType,
+      onChange: e => updateNewMacro('foodType', e.target.value),
+      disabled: !newMacro.foodRequired
+    }, foodList.map(food => /*#__PURE__*/_react.default.createElement("option", {
+      key: food,
+      value: food
+    }, food)))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Data Reward (", newMacro.job, ")"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "grid grid-cols-4 gap-2"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "I",
+      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.dataReward.i,
+      onChange: e => updateNewMacro('dataReward', {
+        ...newMacro.dataReward,
+        i: e.target.value
       })
-    });
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "II",
+      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.dataReward.ii,
+      onChange: e => updateNewMacro('dataReward', {
+        ...newMacro.dataReward,
+        ii: e.target.value
+      })
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "III",
+      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.dataReward.iii,
+      onChange: e => updateNewMacro('dataReward', {
+        ...newMacro.dataReward,
+        iii: e.target.value
+      })
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "IV",
+      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.dataReward.iv,
+      onChange: e => updateNewMacro('dataReward', {
+        ...newMacro.dataReward,
+        iv: e.target.value
+      })
+    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex items-center justify-between mb-2"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium text-cyan-300"
+    }, "Items"), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: addNewItem,
+      className: "px-2 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded text-sm border border-indigo-500/30 transition-all"
+    }, "Add Item")), newMacro.items.map((item, index) => /*#__PURE__*/_react.default.createElement("div", {
+      key: index,
+      className: "flex gap-2 mb-2"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      type: "text",
+      className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "Item Name",
+      value: item.name,
+      onChange: e => updateNewMacroItem(index, 'name', e.target.value)
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "Difficulty",
+      value: item.difficulty,
+      onChange: e => updateNewMacroItem(index, 'difficulty', e.target.value)
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "Quality",
+      value: item.quality,
+      onChange: e => updateNewMacroItem(index, 'quality', e.target.value)
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "Durability",
+      value: item.durability,
+      onChange: e => updateNewMacroItem(index, 'durability', e.target.value)
+    }), newMacro.items.length > 1 && /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => removeNewItem(index),
+      className: "px-2 py-2 bg-red-600/50 hover:bg-red-600/70 backdrop-blur-sm rounded border border-red-500/30 transition-all"
+    }, /*#__PURE__*/_react.default.createElement(_lucideReact.X, {
+      className: "w-4 h-4"
+    }))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Macro"), /*#__PURE__*/_react.default.createElement("textarea", {
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all font-mono text-sm",
+      rows: 6,
+      value: newMacro.macro,
+      onChange: e => updateNewMacro('macro', e.target.value),
+      placeholder: "/ac \"Muscle Memory\" <wait.3>"
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-sm font-medium mb-1 text-cyan-300"
+    }, "Notes"), /*#__PURE__*/_react.default.createElement("textarea", {
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      rows: 2,
+      value: newMacro.notes,
+      onChange: e => updateNewMacro('notes', e.target.value),
+      placeholder: "Stats: 5811/5332/633. Additional notes..."
+    })), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex gap-2 justify-end"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => setShowAddForm(false),
+      className: "px-4 py-2 bg-slate-600/50 hover:bg-slate-600/70 backdrop-blur-sm rounded transition-all border border-slate-500/30"
+    }, "Cancel"), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: addNewMacro,
+      disabled: !newMacro.questName || !newMacro.items[0].name,
+      className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-900/30"
+    }, "Add Macro")))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "mb-4 text-cyan-300"
+    }, /*#__PURE__*/_react.default.createElement("div", null, "Found ", filteredMacros.length, " mission", filteredMacros.length !== 1 ? 's' : ''), searchMode === 'numeric' && (difficultySearch || qualitySearch || durabilitySearch) && /*#__PURE__*/_react.default.createElement("div", {
+      className: "text-sm mt-1"
+    }, "Searching for exact matches:", difficultySearch && /*#__PURE__*/_react.default.createElement("span", {
+      className: "ml-2 text-orange-400"
+    }, "Difficulty = ", difficultySearch), qualitySearch && /*#__PURE__*/_react.default.createElement("span", {
+      className: "ml-2 text-green-400"
+    }, "Quality = ", qualitySearch), durabilitySearch && /*#__PURE__*/_react.default.createElement("span", {
+      className: "ml-2 text-red-400"
+    }, "Durability = ", durabilitySearch))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "space-y-4"
+    }, filteredMacros.map(macro => {
+      var _document$getElementB;
+      return /*#__PURE__*/_react.default.createElement("div", {
+        key: macro.id,
+        className: "bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 overflow-hidden group shadow-xl"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "p-4 cursor-pointer hover:bg-slate-700/30 transition-all",
+        onClick: () => toggleExpanded(macro.id)
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center justify-between"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex-1"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 mb-2"
+      }, /*#__PURE__*/_react.default.createElement("h3", {
+        className: "text-xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
+      }, macro.questName), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          setEditingGeneral(macro.id);
+        },
+        className: "p-1 hover:bg-slate-600/50 rounded opacity-0 group-hover:opacity-100 transition-all"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Edit2, {
+        className: "w-4 h-4 text-cyan-400"
+      }))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex flex-wrap gap-2 mb-2"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "px-2 py-1 bg-indigo-500/20 text-indigo-300 rounded-md text-sm flex items-center gap-1 border border-indigo-500/30"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Globe, {
+        className: "w-3 h-3"
+      }), macro.location), /*#__PURE__*/_react.default.createElement("span", {
+        className: "px-2 py-1 bg-purple-500/20 text-purple-300 rounded-md text-sm flex items-center gap-1 border border-purple-500/30"
+      }, /*#__PURE__*/_react.default.createElement(JobIcon, {
+        job: macro.job,
+        size: 12
+      }), macro.job)), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex flex-wrap gap-2 items-center"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm text-cyan-300"
+      }, "Crafts:"), macro.items.map((item, idx) => /*#__PURE__*/_react.default.createElement("button", {
+        key: idx,
+        onClick: e => {
+          e.stopPropagation();
+          copyItemMacro(macro.id, idx);
+        },
+        className: "px-2 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded-md text-sm transition-all flex items-center gap-1 border border-slate-600/50"
+      }, copiedItemId === `${macro.id}-${idx}` ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_lucideReact.Check, {
+        className: "w-3 h-3 text-green-400"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-green-400"
+      }, item.name)) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_lucideReact.Copy, {
+        className: "w-3 h-3 text-slate-400"
+      }), /*#__PURE__*/_react.default.createElement("span", null, item.name)))))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2"
+      }, macro.foodRequired && macro.foodType !== 'None' && /*#__PURE__*/_react.default.createElement("span", {
+        className: "flex items-center gap-1 px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded-md text-sm border border-emerald-500/30"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Coffee, {
+        className: "w-3 h-3"
+      }), macro.foodType), /*#__PURE__*/_react.default.createElement("span", {
+        className: `text-sm px-2 py-1 rounded border ${macro.category.includes('Class A') && !macro.category.includes('Expert') ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' : macro.category === 'Class A Expert' ? 'bg-red-500/20 text-red-300 border-red-500/30' : macro.category === 'Class B' ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : macro.category === 'Class C' ? 'bg-green-500/20 text-green-300 border-green-500/30' : macro.category === 'Class D' ? 'bg-slate-500/20 text-slate-300 border-slate-500/30' : macro.category === 'Sequential' ? 'bg-orange-500/20 text-orange-300 border-orange-500/30' : macro.category === 'Time-Restricted' ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' : macro.category === 'Critical' ? 'bg-red-600/20 text-red-300 border-red-600/30' : 'bg-slate-500/20 text-slate-300 border-slate-500/30'}`
+      }, macro.category), expandedMacros[macro.id] ? /*#__PURE__*/_react.default.createElement(_lucideReact.ChevronUp, {
+        className: "w-5 h-5 text-cyan-400"
+      }) : /*#__PURE__*/_react.default.createElement(_lucideReact.ChevronDown, {
+        className: "w-5 h-5 text-cyan-400"
+      })))), editingGeneral === macro.id && /*#__PURE__*/_react.default.createElement("div", {
+        className: "border-t border-slate-700/50 p-4 bg-slate-900/30"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"
+      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Quest Name"), /*#__PURE__*/_react.default.createElement("input", {
+        type: "text",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
+        defaultValue: macro.questName,
+        id: `questName-${macro.id}`
+      })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Location"), /*#__PURE__*/_react.default.createElement("select", {
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
+        defaultValue: macro.location,
+        id: `location-${macro.id}`
+      }, /*#__PURE__*/_react.default.createElement("option", {
+        value: "Sinus Ardorum"
+      }, "Sinus Ardorum"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Phaenna"
+      }, "Phaenna"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Sinus Ardorum/Phaenna"
+      }, "Sinus Ardorum/Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Job"), /*#__PURE__*/_react.default.createElement("select", {
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
+        defaultValue: macro.job,
+        id: `job-${macro.id}`
+      }, jobList.map(job => /*#__PURE__*/_react.default.createElement("option", {
+        key: job,
+        value: job
+      }, job)))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Category"), /*#__PURE__*/_react.default.createElement("select", {
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
+        defaultValue: macro.category,
+        id: `category-${macro.id}`
+      }, /*#__PURE__*/_react.default.createElement("option", {
+        value: "Class D"
+      }, "Class D"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Class C"
+      }, "Class C"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Class B"
+      }, "Class B"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Class A"
+      }, "Class A"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Class A Expert"
+      }, "Class A Expert"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Sequential"
+      }, "Sequential"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Time-Restricted"
+      }, "Time-Restricted"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Critical"
+      }, "Critical"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Food"), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex gap-2"
+      }, /*#__PURE__*/_react.default.createElement("input", {
+        type: "checkbox",
+        className: "mt-2 accent-cyan-500",
+        defaultChecked: macro.foodRequired,
+        id: `foodRequired-${macro.id}`
+      }), /*#__PURE__*/_react.default.createElement("select", {
+        className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
+        defaultValue: macro.foodType,
+        id: `foodType-${macro.id}`
+      }, foodList.map(food => /*#__PURE__*/_react.default.createElement("option", {
+        key: food,
+        value: food
+      }, food)))))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "mb-4"
+      }, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Craft Requirements"), macro.items.map((item, idx) => /*#__PURE__*/_react.default.createElement("div", {
+        key: idx,
+        className: "flex gap-2 mb-2"
+      }, /*#__PURE__*/_react.default.createElement("input", {
+        type: "text",
+        className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: item.name,
+        id: `itemName-${macro.id}-${idx}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: item.difficulty,
+        id: `itemDifficulty-${macro.id}-${idx}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: item.quality,
+        id: `itemQuality-${macro.id}-${idx}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        className: "w-24 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: item.durability,
+        id: `itemDurability-${macro.id}-${idx}`
+      })))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "mb-4"
+      }, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-sm font-medium mb-1 text-cyan-300"
+      }, "Data Reward (", ((_document$getElementB = document.getElementById(`job-${macro.id}`)) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || macro.dataReward.job, ")"), /*#__PURE__*/_react.default.createElement("div", {
+        className: "grid grid-cols-4 gap-2"
+      }, /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        placeholder: "I",
+        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: macro.dataReward.i,
+        id: `dataRewardI-${macro.id}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        placeholder: "II",
+        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: macro.dataReward.ii,
+        id: `dataRewardII-${macro.id}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        placeholder: "III",
+        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: macro.dataReward.iii,
+        id: `dataRewardIII-${macro.id}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        placeholder: "IV",
+        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: macro.dataReward.iv,
+        id: `dataRewardIV-${macro.id}`
+      }))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex gap-2 justify-end"
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => setEditingGeneral(null),
+        className: "px-4 py-2 bg-slate-600/50 hover:bg-slate-600/70 backdrop-blur-sm rounded transition-all border border-slate-500/30"
+      }, "Cancel"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => {
+          const job = document.getElementById(`job-${macro.id}`).value;
+          const updates = {
+            questName: document.getElementById(`questName-${macro.id}`).value,
+            location: document.getElementById(`location-${macro.id}`).value,
+            job: job,
+            category: document.getElementById(`category-${macro.id}`).value,
+            foodRequired: document.getElementById(`foodRequired-${macro.id}`).checked,
+            foodType: document.getElementById(`foodType-${macro.id}`).value,
+            items: macro.items.map((item, idx) => ({
+              name: document.getElementById(`itemName-${macro.id}-${idx}`).value,
+              difficulty: parseInt(document.getElementById(`itemDifficulty-${macro.id}-${idx}`).value) || 0,
+              quality: parseInt(document.getElementById(`itemQuality-${macro.id}-${idx}`).value) || 0,
+              durability: parseInt(document.getElementById(`itemDurability-${macro.id}-${idx}`).value) || 0
+            })),
+            dataReward: {
+              job: job,
+              i: parseInt(document.getElementById(`dataRewardI-${macro.id}`).value) || 0,
+              ii: parseInt(document.getElementById(`dataRewardII-${macro.id}`).value) || 0,
+              iii: parseInt(document.getElementById(`dataRewardIII-${macro.id}`).value) || 0,
+              iv: parseInt(document.getElementById(`dataRewardIV-${macro.id}`).value) || 0
+            }
+          };
+          saveGeneralEdit(macro.id, updates);
+        },
+        className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all shadow-lg shadow-green-900/30"
+      }, "Save"))), expandedMacros[macro.id] && /*#__PURE__*/_react.default.createElement("div", {
+        className: "border-t border-slate-700/50 p-4 space-y-4"
+      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center justify-between mb-2"
+      }, /*#__PURE__*/_react.default.createElement("h4", {
+        className: "font-semibold text-cyan-300"
+      }, "Craft Requirements"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => addItemToMacro(macro.id),
+        className: "px-2 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded text-sm border border-indigo-500/30 transition-all"
+      }, "Add Item")), /*#__PURE__*/_react.default.createElement("div", {
+        className: "grid grid-cols-1 md:grid-cols-3 gap-4"
+      }, macro.items.map((item, idx) => /*#__PURE__*/_react.default.createElement("div", {
+        key: idx,
+        className: "bg-slate-700/30 p-3 rounded-lg relative border border-slate-600/50"
+      }, macro.items.length > 1 && /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => removeItemFromMacro(macro.id, idx),
+        className: "absolute top-2 right-2 p-1 bg-red-600/50 hover:bg-red-600/70 rounded border border-red-500/30"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.X, {
+        className: "w-3 h-3"
+      })), /*#__PURE__*/_react.default.createElement("p", {
+        className: "font-medium text-cyan-300 pr-6"
+      }, item.name), /*#__PURE__*/_react.default.createElement("div", {
+        className: "space-y-1 text-sm mt-2"
+      }, /*#__PURE__*/_react.default.createElement("p", null, "Difficulty: ", /*#__PURE__*/_react.default.createElement("span", {
+        className: `text-orange-400 ${searchMode === 'numeric' && difficultySearch && item.difficulty === parseInt(difficultySearch) ? 'font-bold bg-orange-500/20 px-1 rounded' : ''}`
+      }, item.difficulty)), /*#__PURE__*/_react.default.createElement("p", null, "Quality: ", /*#__PURE__*/_react.default.createElement("span", {
+        className: `text-green-400 ${searchMode === 'numeric' && qualitySearch && item.quality === parseInt(qualitySearch) ? 'font-bold bg-green-500/20 px-1 rounded' : ''}`
+      }, item.quality)), /*#__PURE__*/_react.default.createElement("p", null, "Durability: ", /*#__PURE__*/_react.default.createElement("span", {
+        className: `text-red-400 ${searchMode === 'numeric' && durabilitySearch && item.durability === parseInt(durabilitySearch) ? 'font-bold bg-red-500/20 px-1 rounded' : ''}`
+      }, item.durability))))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h4", {
+        className: "font-semibold mb-2 text-cyan-300"
+      }, "Data Reward"), /*#__PURE__*/_react.default.createElement("div", {
+        className: "bg-slate-700/30 p-3 rounded-lg border border-slate-600/50"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex flex-wrap gap-3"
+      }, macro.dataReward.i > 0 && /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 px-3 py-1 bg-gray-600/30 rounded-md border border-gray-500/50",
+        style: {
+          boxShadow: '0 0 10px rgba(156, 163, 175, 0.5)'
+        }
+      }, /*#__PURE__*/_react.default.createElement(JobIcon, {
+        job: macro.dataReward.job || macro.job,
+        size: 16
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-gray-300 font-bold"
+      }, "I"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-gray-400 text-sm"
+      }, "\xD7", macro.dataReward.i)), macro.dataReward.ii > 0 && /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 px-3 py-1 bg-yellow-600/30 rounded-md border border-yellow-500/50",
+        style: {
+          boxShadow: '0 0 10px rgba(250, 204, 21, 0.5)'
+        }
+      }, /*#__PURE__*/_react.default.createElement(JobIcon, {
+        job: macro.dataReward.job || macro.job,
+        size: 16
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-yellow-300 font-bold"
+      }, "II"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-yellow-400 text-sm"
+      }, "\xD7", macro.dataReward.ii)), macro.dataReward.iii > 0 && /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 px-3 py-1 bg-blue-600/30 rounded-md border border-blue-500/50",
+        style: {
+          boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)'
+        }
+      }, /*#__PURE__*/_react.default.createElement(JobIcon, {
+        job: macro.dataReward.job || macro.job,
+        size: 16
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-blue-300 font-bold"
+      }, "III"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-blue-400 text-sm"
+      }, "\xD7", macro.dataReward.iii)), macro.dataReward.iv > 0 && /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 px-3 py-1 bg-purple-600/30 rounded-md border border-purple-500/50",
+        style: {
+          boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)'
+        }
+      }, /*#__PURE__*/_react.default.createElement(JobIcon, {
+        job: macro.dataReward.job || macro.job,
+        size: 16
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-purple-300 font-bold"
+      }, "IV"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-purple-400 text-sm"
+      }, "\xD7", macro.dataReward.iv)), macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-slate-400 text-sm"
+      }, "No data rewards")))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center justify-between mb-2"
+      }, /*#__PURE__*/_react.default.createElement("h4", {
+        className: "font-semibold text-cyan-300"
+      }, "Macro", macro.macros && macro.macros.length > 1 ? 's' : ''), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex gap-2"
+      }, editingId !== macro.id && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          startEditing(macro.id, macro.macros ? macro.macros[0].macro : macro.macro);
+          setEditingMacroIndex(0);
+        },
+        className: "flex items-center gap-2 px-3 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded transition-all border border-slate-600/50"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Edit2, {
+        className: "w-4 h-4"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm"
+      }, "Edit")), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          copyMacro(macro.id, macro.macros ? macro.macros[0].macro : macro.macro);
+        },
+        className: "flex items-center gap-2 px-3 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded transition-all border border-slate-600/50"
+      }, copiedId === macro.id ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_lucideReact.Check, {
+        className: "w-4 h-4 text-green-400"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm text-green-400"
+      }, "Copied!")) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_lucideReact.Copy, {
+        className: "w-4 h-4"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm"
+      }, "Copy")))), editingId === macro.id && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          if (macro.macros) {
+            const updatedMacros = [...macro.macros];
+            updatedMacros[editingMacroIndex] = {
+              ...updatedMacros[editingMacroIndex],
+              macro: editedMacro
+            };
+            setMacros(prev => prev.map(m => m.id === macro.id ? {
+              ...m,
+              macros: updatedMacros
+            } : m));
+          } else {
+            saveEdit(macro.id);
+          }
+          setEditingId(null);
+          setEditedMacro('');
+        },
+        className: "flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Save, {
+        className: "w-4 h-4"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm"
+      }, "Save")), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          cancelEdit();
+        },
+        className: "flex items-center gap-2 px-3 py-1 bg-red-600/50 hover:bg-red-600/70 rounded transition-all border border-red-500/30"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.X, {
+        className: "w-4 h-4"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm"
+      }, "Cancel"))))), editingId === macro.id ? /*#__PURE__*/_react.default.createElement("div", {
+        className: "space-y-2"
+      }, macro.macros && editingMacroIndex < macro.macros.length && /*#__PURE__*/_react.default.createElement("div", {
+        className: "text-sm text-cyan-300"
+      }, "Editing macro for: ", macro.macros[editingMacroIndex].itemName), /*#__PURE__*/_react.default.createElement("textarea", {
+        value: editedMacro,
+        onChange: e => setEditedMacro(e.target.value),
+        className: "w-full bg-slate-900/50 p-3 rounded-lg text-sm font-mono border border-slate-600/50 focus:outline-none focus:border-cyan-500",
+        rows: 10,
+        onClick: e => e.stopPropagation()
+      })) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, macro.macros ? /*#__PURE__*/_react.default.createElement("div", {
+        className: "space-y-4"
+      }, macro.macros.map((macroItem, idx) => /*#__PURE__*/_react.default.createElement("div", {
+        key: idx,
+        className: "bg-slate-900/50 rounded-lg p-3 border border-slate-600/50"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center justify-between mb-2"
+      }, /*#__PURE__*/_react.default.createElement("h5", {
+        className: "text-sm font-medium text-cyan-300"
+      }, macroItem.itemName), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex gap-2"
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          startEditing(macro.id, macroItem.macro);
+          setEditingMacroIndex(idx);
+        },
+        className: "p-1 hover:bg-slate-700/50 rounded"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Edit2, {
+        className: "w-3 h-3 text-cyan-400"
+      })), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          copyMacro(`${macro.id}-${idx}`, macroItem.macro);
+        },
+        className: "p-1 hover:bg-slate-700/50 rounded"
+      }, copiedId === `${macro.id}-${idx}` ? /*#__PURE__*/_react.default.createElement(_lucideReact.Check, {
+        className: "w-3 h-3 text-green-400"
+      }) : /*#__PURE__*/_react.default.createElement(_lucideReact.Copy, {
+        className: "w-3 h-3"
+      })))), /*#__PURE__*/_react.default.createElement("pre", {
+        className: "text-sm font-mono overflow-x-auto text-gray-300"
+      }, macroItem.macro)))) : /*#__PURE__*/_react.default.createElement("pre", {
+        className: "bg-slate-900/50 p-3 rounded-lg text-sm font-mono overflow-x-auto border border-slate-600/50 text-gray-300"
+      }, macro.macro))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center justify-between mb-2"
+      }, /*#__PURE__*/_react.default.createElement("h4", {
+        className: "font-semibold text-cyan-300"
+      }, "Notes"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: e => {
+          e.stopPropagation();
+          setEditingNotes(macro.id);
+          setEditedNotes(macro.notes || '');
+        },
+        className: "flex items-center gap-2 px-3 py-1 bg-slate-700/50 hover:bg-slate-600/50 rounded transition-all border border-slate-600/50"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Edit2, {
+        className: "w-4 h-4"
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-sm"
+      }, "Edit"))), editingNotes === macro.id ? /*#__PURE__*/_react.default.createElement("div", {
+        className: "space-y-2"
+      }, /*#__PURE__*/_react.default.createElement("textarea", {
+        value: editedNotes,
+        onChange: e => setEditedNotes(e.target.value),
+        className: "w-full bg-slate-700/30 p-3 rounded text-gray-300 border border-slate-600/50",
+        rows: 3
+      }), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex gap-2"
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => {
+          setMacros(prev => prev.map(m => m.id === macro.id ? {
+            ...m,
+            notes: editedNotes
+          } : m));
+          setEditingNotes(null);
+          setEditedNotes('');
+        },
+        className: "px-3 py-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded"
+      }, "Save"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => {
+          setEditingNotes(null);
+          setEditedNotes('');
+        },
+        className: "px-3 py-1 bg-red-600/50 hover:bg-red-600/70 rounded border border-red-500/30"
+      }, "Cancel"))) : /*#__PURE__*/_react.default.createElement("p", {
+        className: "text-gray-400"
+      }, macro.notes || 'No notes added.')), /*#__PURE__*/_react.default.createElement("div", {
+        className: "pt-4 border-t border-slate-700/50"
+      }, deleteConfirm === macro.id ? /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center justify-center gap-2"
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-red-400"
+      }, "Are you sure?"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => deleteMacro(macro.id),
+        className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded transition-all"
+      }, "Yes"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => setDeleteConfirm(null),
+        className: "px-4 py-2 bg-red-600/50 hover:bg-red-600/70 rounded transition-all border border-red-500/30"
+      }, "No")) : /*#__PURE__*/_react.default.createElement("button", {
+        onClick: () => setDeleteConfirm(macro.id),
+        className: "w-full px-4 py-2 bg-red-600/30 hover:bg-red-600/50 backdrop-blur-sm rounded transition-all flex items-center justify-center gap-2 border border-red-500/30"
+      }, /*#__PURE__*/_react.default.createElement(_lucideReact.Trash2, {
+        className: "w-4 h-4"
+      }), /*#__PURE__*/_react.default.createElement("span", null, "Delete Entry")))));
+    })), macros.length === 0 && /*#__PURE__*/_react.default.createElement("div", {
+      className: "text-center py-12"
+    }, /*#__PURE__*/_react.default.createElement("p", {
+      className: "text-cyan-300 text-lg"
+    }, "No data")), macros.length > 0 && filteredMacros.length === 0 && /*#__PURE__*/_react.default.createElement("div", {
+      className: "text-center py-12"
+    }, /*#__PURE__*/_react.default.createElement("p", {
+      className: "text-cyan-300"
+    }, "No missions found matching your criteria."))));
   };
-  // Export as default for module systems
   var _default = _exports.default = FFXIVMacroDatabase;
-
-  // Also attach to window for direct browser usage
-  if (typeof window !== "undefined") {
-    window.FFXIVMacroDatabase = FFXIVMacroDatabase;
-  }
 });
