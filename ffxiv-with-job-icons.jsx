@@ -1,5 +1,5 @@
 const { useState, useEffect, useMemo } = React;
-const Search = lucide.Search;
+
 // Get icons from global Lucide object (loaded via CDN)
 const {
   Search,
