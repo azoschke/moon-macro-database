@@ -15,13 +15,30 @@
   <!-- Lucide Icons -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #app {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .error {
+      color: red;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
   <h1>FFXIV Macro Database</h1>
   <div id="app">Loading...</div>
 
-  <!-- Load your component -->
-  <script type="text/babel" src="ffxiv-with-job-icons.js"></script>
+  <!-- Load JSX directly from your repo -->
+  <script type="text/babel" src="ffxiv-with-job-icons.jsx"></script>
+
+  <!-- Render the component -->
   <script type="text/babel">
     const root = ReactDOM.createRoot(document.getElementById("app"));
     root.render(<FFXIVMacroDatabase />);
