@@ -14,7 +14,7 @@
 
     // Force React and Lucide global mapping for hooks
     var _react = React;
-    var _lucideReact = lucide;
+    var _lucideReact = lucideReact;
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
