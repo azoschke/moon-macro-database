@@ -57,7 +57,6 @@ git clone https://github.com/azoschke/moon-macro-database.git
    - Food requirements (optional)
    - Data Rewards for the selected job
    - Item details (name, difficulty, quality, durability)
-   - Macro text (will auto-split into 15-line parts)
 3. Click **"Add Macro"** to save
 
 ### Managing Entries
