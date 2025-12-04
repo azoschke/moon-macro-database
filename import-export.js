@@ -236,7 +236,8 @@ window.FFXIVImportExport = {
         for (let i = 1; i < lines.length; i++) {
           const values = self.parseCSVLine(lines[i]);
 
-          if (values.length < 18) continue; // Skip incomplete rows
+          // Skip rows with too few columns (need at least quest name)
+          if (values.length < 1 || !values[0].trim()) continue;
 
           const questName = values[0] || '';
           const location = values[1] || '';
