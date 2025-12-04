@@ -786,7 +786,7 @@
       rows: 2,
       value: newMacro.notes,
       onChange: e => updateNewMacro('notes', e.target.value),
-      placeholder: "Stats: 5811/5332/633. Additional notes..."
+      placeholder: "Space for additional notes..."
     })), /*#__PURE__*/_react.default.createElement("div", {
       className: "flex gap-2 justify-end"
     }, /*#__PURE__*/_react.default.createElement("button", {
