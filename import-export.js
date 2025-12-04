@@ -179,6 +179,180 @@ window.FFXIVImportExport = {
     }
   },
 
+  // Parse CSV line respecting quotes
+  parseCSVLine: function(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          // Escaped quote
+          current += '"';
+          i++; // Skip next quote
+        } else {
+          // Toggle quote mode
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        // End of field
+        result.push(current);
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+
+    // Add last field
+    result.push(current);
+    return result;
+  },
+
+  // Import database from CSV
+  importFromCSV: function(file, callback) {
+    const reader = new FileReader();
+    const self = this;
+
+    reader.onload = function(e) {
+      try {
+        const csvText = e.target.result;
+        const lines = csvText.split('\n').filter(line => line.trim());
+
+        if (lines.length < 2) {
+          alert('CSV file is empty or invalid!');
+          return;
+        }
+
+        // Parse header
+        const headers = self.parseCSVLine(lines[0]);
+
+        // Group rows by quest
+        const questMap = new Map();
+
+        for (let i = 1; i < lines.length; i++) {
+          const values = self.parseCSVLine(lines[i]);
+
+          if (values.length < 18) continue; // Skip incomplete rows
+
+          const questName = values[0] || '';
+          const location = values[1] || '';
+          const job = values[2] || '';
+          const category = values[3] || '';
+          const foodRequired = values[4] === 'Yes';
+          const foodType = values[5] || 'None';
+          const itemName = values[6] || '';
+          const difficulty = parseInt(values[7]) || 0;
+          const quality = parseInt(values[8]) || 0;
+          const durability = parseInt(values[9]) || 0;
+          const dataRewardJob = values[10] || job;
+          const dataI = parseInt(values[11]) || 0;
+          const dataII = parseInt(values[12]) || 0;
+          const dataIII = parseInt(values[13]) || 0;
+          const dataIV = parseInt(values[14]) || 0;
+          const dataV = parseInt(values[15]) || 0;
+          const macroText = values[16] || '';
+          const notes = values[17] || '';
+
+          // Create or get quest entry
+          if (!questMap.has(questName)) {
+            questMap.set(questName, {
+              id: Date.now() + questMap.size,
+              questName: questName,
+              location: location,
+              job: job,
+              category: category,
+              foodRequired: foodRequired,
+              foodType: foodType,
+              items: [],
+              dataReward: {
+                job: dataRewardJob,
+                i: dataI,
+                ii: dataII,
+                iii: dataIII,
+                iv: dataIV,
+                v: dataV
+              },
+              notes: notes
+            });
+          }
+
+          const quest = questMap.get(questName);
+
+          // Add item if it has a name
+          if (itemName) {
+            quest.items.push({
+              name: itemName,
+              difficulty: difficulty,
+              quality: quality,
+              durability: durability
+            });
+
+            // Store macro for this item
+            if (!quest.macros) {
+              quest.macros = [];
+            }
+            quest.macros.push({
+              itemName: itemName,
+              macro: macroText
+            });
+          }
+        }
+
+        // Convert map to array and fix macro structure
+        const importedData = Array.from(questMap.values()).map(quest => {
+          // If only one item, use single macro field
+          if (quest.items.length === 1 && quest.macros && quest.macros.length === 1) {
+            quest.macro = quest.macros[0].macro;
+            delete quest.macros;
+          } else if (quest.items.length === 0) {
+            // If no items, add a default one
+            quest.items = [{
+              name: '',
+              difficulty: 0,
+              quality: 0,
+              durability: 0
+            }];
+            quest.macro = '';
+          }
+
+          return quest;
+        });
+
+        if (importedData.length === 0) {
+          alert('No valid data found in CSV file!');
+          return;
+        }
+
+        // Ask for confirmation
+        const currentData = localStorage.getItem('ffxiv-macro-database');
+        let confirmMessage = `Import ${importedData.length} quests from CSV?`;
+
+        if (currentData) {
+          const currentMacros = JSON.parse(currentData);
+          confirmMessage = `This will replace your current ${currentMacros.length} entries with ${importedData.length} new entries from CSV. Continue?`;
+        }
+
+        if (confirm(confirmMessage)) {
+          localStorage.setItem('ffxiv-macro-database', JSON.stringify(importedData));
+          alert(`Successfully imported ${importedData.length} entries from CSV!`);
+
+          // Trigger callback to refresh the UI
+          if (callback) callback();
+        }
+
+      } catch (error) {
+        console.error('CSV Import error:', error);
+        alert(`Error importing CSV: ${error.message}`);
+      }
+    };
+
+    reader.readAsText(file);
+  },
+
   // Import database from JSON
   importFromJSON: function(file, callback) {
     const reader = new FileReader();
