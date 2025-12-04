@@ -70,10 +70,10 @@
     className = ""
   }) => {
     const jobIcons = {
-      Carpenter: "🔨",
+      Carpenter: "🪚",
       Alchemist: "⚗️",
       Armorer: "🛡️",
-      Blacksmith: "⚔️",
+      Blacksmith: "🗡️",
       Culinarian: "🍳",
       Goldsmith: "💍",
       Leatherworker: "🧤",
