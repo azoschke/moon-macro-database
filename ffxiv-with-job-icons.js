@@ -469,31 +469,7 @@
     }, /*#__PURE__*/_react.default.createElement("span", {
       className: "material-symbols-outlined",
       style: { fontSize: '16px' }
-    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export CSV")), /*#__PURE__*/_react.default.createElement("label", {
-      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50 cursor-pointer"
-    }, /*#__PURE__*/_react.default.createElement("span", {
-      className: "material-symbols-outlined",
-      style: { fontSize: '16px' }
-    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import JSON"), /*#__PURE__*/_react.default.createElement("input", {
-      type: "file",
-      accept: ".json",
-      onChange: e => {
-        const file = e.target.files[0];
-        if (file && window.FFXIVImportExport) {
-          window.FFXIVImportExport.importFromJSON(file, () => {
-            window.location.reload();
-          });
-        }
-        e.target.value = '';
-      },
-      className: "hidden"
-    })), /*#__PURE__*/_react.default.createElement("button", {
-      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToJSON(),
-      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50"
-    }, /*#__PURE__*/_react.default.createElement("span", {
-      className: "material-symbols-outlined",
-      style: { fontSize: '16px' }
-    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export JSON"))), /*#__PURE__*/_react.default.createElement("div", {
+    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export CSV"))), /*#__PURE__*/_react.default.createElement("div", {
       className: "text-center mb-8"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "text-xs tracking-widest text-cyan-400/70 mb-2"
