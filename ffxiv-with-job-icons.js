@@ -1,36 +1,22 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "lucide"], factory);
+    define(["exports", "react", "lucide-react"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("lucide"));
+    factory(exports, require("react"), require("lucide-react"));
   } else {
     var mod = { exports: {} };
-    factory(mod.exports, global.react, global.lucide);
+    factory(mod.exports, global.React, global.LucideReact);
     global.repl = mod.exports;
   }
 })(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this,
-  function (_exports, _react, _lucide) {
+  function (_exports, _react, _lucideReact) {
     "use strict";
 
     // Force React global mapping
     var _react = React;
 
-    // Wrap *all* Lucide icons into React components
-    var _lucideReact = {};
-    Object.keys(lucide).forEach(function (iconName) {
-      var iconDef = lucide[iconName];
-      _lucideReact[iconName] = function IconComponent(props) {
-        return React.createElement(
-          "svg",
-          { ...iconDef.attr, ...props },
-          iconDef.children &&
-            iconDef.children.map(function (child, i) {
-              return React.createElement(child.tag, { key: i, ...child.attr });
-            })
-        );
-      };
-    });
-    
+    // LucideReact icons are already React components, no wrapping needed
+
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
