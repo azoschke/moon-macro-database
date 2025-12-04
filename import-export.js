@@ -46,6 +46,7 @@ window.FFXIVImportExport = {
         'Data III',
         'Data IV',
         'Data V',
+        'Cosmic Points',
         'Macro',
         'Notes'
       ];
@@ -77,9 +78,10 @@ window.FFXIVImportExport = {
               row.push(macro.dataReward.iii || 0);
               row.push(macro.dataReward.iv || 0);
               row.push(macro.dataReward.v || 0);
+              row.push(macro.dataReward.cosmicPoints || 0);
             } else {
               row.push(this.escapeCSV(macro.job));
-              row.push(0, 0, 0, 0, 0);
+              row.push(0, 0, 0, 0, 0, 0);
             }
 
             let macroText = '';
@@ -108,6 +110,7 @@ window.FFXIVImportExport = {
             macro.dataReward?.iii || 0,
             macro.dataReward?.iv || 0,
             macro.dataReward?.v || 0,
+            macro.dataReward?.cosmicPoints || 0,
             this.escapeCSV(macro.macro || ''),
             this.escapeCSV(macro.notes || '')
           ];
@@ -297,8 +300,9 @@ window.FFXIVImportExport = {
           const dataIII = parseInt(values[13]) || 0;
           const dataIV = parseInt(values[14]) || 0;
           const dataV = parseInt(values[15]) || 0;
-          const macroText = values[16] || '';
-          const notes = values[17] || '';
+          const cosmicPoints = parseInt(values[16]) || 0;
+          const macroText = values[17] || '';
+          const notes = values[18] || '';
 
           console.log('Row', i, 'Quest:', questName, 'Job:', job, 'Item:', itemName, 'Macro length:', macroText.length);
 
@@ -323,7 +327,8 @@ window.FFXIVImportExport = {
                 ii: dataII,
                 iii: dataIII,
                 iv: dataIV,
-                v: dataV
+                v: dataV,
+                cosmicPoints: cosmicPoints
               },
               notes: notes
             });
