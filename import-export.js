@@ -312,7 +312,7 @@ window.FFXIVImportExport = {
         console.log('Detected delimiter:', delimiter === '\t' ? 'TAB' : 'COMMA');
         console.log('Headers:', headers);
 
-        // Group rows by quest
+        // Group rows by quest + location + job to handle duplicate quest names
         const questMap = new Map();
 
         for (let i = 1; i < lines.length; i++) {
@@ -340,9 +340,14 @@ window.FFXIVImportExport = {
           const macroText = values[16] || '';
           const notes = values[17] || '';
 
+          console.log('Row', i, 'Quest:', questName, 'Item:', itemName, 'Macro length:', macroText.length);
+
+          // Create unique key combining quest name, location, and job to handle duplicate quest names
+          const questKey = `${questName}|||${location}|||${job}`;
+
           // Create or get quest entry
-          if (!questMap.has(questName)) {
-            questMap.set(questName, {
+          if (!questMap.has(questKey)) {
+            questMap.set(questKey, {
               id: Date.now() + questMap.size,
               questName: questName,
               location: location,
@@ -363,7 +368,7 @@ window.FFXIVImportExport = {
             });
           }
 
-          const quest = questMap.get(questName);
+          const quest = questMap.get(questKey);
 
           // Add item if it has a name
           if (itemName) {
