@@ -1,21 +1,80 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "lucide-react"], factory);
+    define(["exports", "react"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("lucide-react"));
+    factory(exports, require("react"));
   } else {
     var mod = { exports: {} };
-    factory(mod.exports, global.React, global.LucideReact);
+    factory(mod.exports, global.React);
     global.repl = mod.exports;
   }
 })(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this,
-  function (_exports, _react, _lucideReact) {
+  function (_exports, _react) {
     "use strict";
 
     // Force React global mapping
     var _react = React;
 
-    // LucideReact icons are already React components, no wrapping needed
+    // Create React wrapper components for Lucide icons
+    var _lucideReact = {};
+
+    // Helper function to convert kebab-case to camelCase for SVG attributes
+    function kebabToCamel(str) {
+      return str.replace(/-([a-z])/g, function(g) { return g[1].toUpperCase(); });
+    }
+
+    // Helper to convert attributes for React
+    function convertAttrs(attrs) {
+      var reactAttrs = {};
+      for (var key in attrs) {
+        if (attrs.hasOwnProperty(key)) {
+          var camelKey = kebabToCamel(key);
+          // Special case for 'class' -> 'className'
+          if (key === 'class') {
+            reactAttrs.className = attrs[key];
+          } else {
+            reactAttrs[camelKey] = attrs[key];
+          }
+        }
+      }
+      return reactAttrs;
+    }
+
+    // List of icons used in the app
+    var iconNames = ['Search', 'Filter', 'Plus', 'X', 'Edit2', 'Globe', 'Check', 'Copy', 'Coffee', 'ChevronUp', 'ChevronDown', 'Save', 'Trash2'];
+
+    // Create React components for each icon
+    iconNames.forEach(function(iconName) {
+      if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[iconName]) {
+        var iconData = lucide.icons[iconName];
+
+        _lucideReact[iconName] = function LucideIcon(props) {
+          // Merge icon attributes with props
+          var svgAttrs = Object.assign({}, iconData.attrs || {});
+
+          // Apply custom props
+          if (props.className) svgAttrs.class = props.className;
+          if (props.width) svgAttrs.width = props.width;
+          if (props.height) svgAttrs.height = props.height;
+          if (props.size) {
+            svgAttrs.width = props.size;
+            svgAttrs.height = props.size;
+          }
+
+          // Convert attributes to React-friendly format
+          var reactAttrs = convertAttrs(svgAttrs);
+
+          // Create child elements
+          var children = (iconData.children || []).map(function(child, index) {
+            var childAttrs = convertAttrs(child.attrs || {});
+            return React.createElement(child.tag, Object.assign({ key: index }, childAttrs));
+          });
+
+          // Return the SVG element
+          return React.createElement('svg', reactAttrs, children);
+        };
+      }
+    });
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
