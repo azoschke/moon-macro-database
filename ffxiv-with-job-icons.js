@@ -77,10 +77,7 @@
       Culinarian: "🍳",
       Goldsmith: "💍",
       Leatherworker: "🧤",
-      Weaver: "🧵",
-      Miner: "⛏️",
-      Fisher: "🎣",
-      Botanist: "🌿"
+      Weaver: "🧵"
     };
 
     return /*#__PURE__*/_react.default.createElement("span", {
@@ -92,7 +89,7 @@
   };
   const FFXIVMacroDatabase = () => {
     // Job list for filters and dropdowns
-    const jobList = ["Carpenter", "Alchemist", "Armorer", "Blacksmith", "Culinarian", "Goldsmith", "Leatherworker", "Weaver", "Miner", "Fisher", "Botanist"];
+    const jobList = ["Carpenter", "Alchemist", "Armorer", "Blacksmith", "Culinarian", "Goldsmith", "Leatherworker", "Weaver"];
     const foodList = ["None", "Rroneek Steak HQ", "Ceviche HQ"];
 
     // Load data from localStorage
@@ -633,7 +630,9 @@
       value: "Sinus Ardorum"
     }, "Sinus Ardorum"), /*#__PURE__*/_react.default.createElement("option", {
       value: "Phaenna"
-    }, "Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+    }, "Phaenna"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Oizys"
+    }, "Oizys"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
       className: "block text-sm font-medium mb-1 text-cyan-300"
     }, "Job"), /*#__PURE__*/_react.default.createElement("select", {
       className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
@@ -893,7 +892,9 @@
         value: "Sinus Ardorum"
       }, "Sinus Ardorum"), /*#__PURE__*/_react.default.createElement("option", {
         value: "Phaenna"
-      }, "Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      }, "Phaenna"), /*#__PURE__*/_react.default.createElement("option", {
+        value: "Oizys"
+      }, "Oizys"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-sm font-medium mb-1 text-cyan-300"
       }, "Job"), /*#__PURE__*/_react.default.createElement("select", {
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
