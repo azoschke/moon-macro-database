@@ -225,8 +225,40 @@ window.FFXIVImportExport = {
     return rows;
   },
 
-  // Parse CSV line respecting quotes
-  parseCSVLine: function(line) {
+  // Detect delimiter (comma or tab)
+  detectDelimiter: function(line) {
+    // Count commas and tabs outside of quotes
+    let commas = 0;
+    let tabs = 0;
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          i++; // Skip escaped quote
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (!inQuotes) {
+        if (char === ',') commas++;
+        if (char === '\t') tabs++;
+      }
+    }
+
+    // Return the delimiter with more occurrences (default to comma)
+    return tabs > commas ? '\t' : ',';
+  },
+
+  // Parse CSV/TSV line respecting quotes
+  parseCSVLine: function(line, delimiter) {
+    // Auto-detect delimiter if not provided
+    if (!delimiter) {
+      delimiter = this.detectDelimiter(line);
+    }
+
     const result = [];
     let current = '';
     let inQuotes = false;
@@ -244,7 +276,7 @@ window.FFXIVImportExport = {
           // Toggle quote mode
           inQuotes = !inQuotes;
         }
-      } else if (char === ',' && !inQuotes) {
+      } else if (char === delimiter && !inQuotes) {
         // End of field
         result.push(current);
         current = '';
@@ -273,14 +305,18 @@ window.FFXIVImportExport = {
           return;
         }
 
-        // Parse header
-        const headers = self.parseCSVLine(lines[0]);
+        // Parse header and detect delimiter
+        const delimiter = self.detectDelimiter(lines[0]);
+        const headers = self.parseCSVLine(lines[0], delimiter);
+
+        console.log('Detected delimiter:', delimiter === '\t' ? 'TAB' : 'COMMA');
+        console.log('Headers:', headers);
 
         // Group rows by quest
         const questMap = new Map();
 
         for (let i = 1; i < lines.length; i++) {
-          const values = self.parseCSVLine(lines[i]);
+          const values = self.parseCSVLine(lines[i], delimiter);
 
           // Skip rows with too few columns (need at least quest name)
           if (values.length < 1 || !values[0].trim()) continue;
