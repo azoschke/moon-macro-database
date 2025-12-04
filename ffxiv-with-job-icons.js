@@ -157,7 +157,8 @@
         ii: 0,
         iii: 0,
         iv: 0,
-        v: 0
+        v: 0,
+        cosmicPoints: 0
       },
       foodRequired: false,
       foodType: 'None'
@@ -307,7 +308,8 @@
           ii: parseInt(newMacro.dataReward.ii) || 0,
           iii: parseInt(newMacro.dataReward.iii) || 0,
           iv: parseInt(newMacro.dataReward.iv) || 0,
-          v: parseInt(newMacro.dataReward.v) || 0
+          v: parseInt(newMacro.dataReward.v) || 0,
+          cosmicPoints: parseInt(newMacro.dataReward.cosmicPoints) || 0
         }
       };
       if (newMacroWithId.items.length > 1) {
@@ -336,7 +338,8 @@
           ii: 0,
           iii: 0,
           iv: 0,
-          v: 0
+          v: 0,
+          cosmicPoints: 0
         },
         foodRequired: false,
         foodType: 'None'
@@ -661,53 +664,74 @@
     }, food)))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
       className: "block text-sm font-medium mb-1 text-cyan-300"
     }, "Data Reward (", newMacro.job, ")"), /*#__PURE__*/_react.default.createElement("div", {
-      className: "grid grid-cols-5 gap-2"
-    }, /*#__PURE__*/_react.default.createElement("input", {
+      className: "grid grid-cols-6 gap-2"
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-xs text-gray-400 mb-1"
+    }, "I"), /*#__PURE__*/_react.default.createElement("input", {
       type: "number",
-      placeholder: "I",
-      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "0",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
       value: newMacro.dataReward.i,
       onChange: e => updateNewMacro('dataReward', {
         ...newMacro.dataReward,
         i: e.target.value
       })
-    }), /*#__PURE__*/_react.default.createElement("input", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-xs text-gray-400 mb-1"
+    }, "II"), /*#__PURE__*/_react.default.createElement("input", {
       type: "number",
-      placeholder: "II",
-      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "0",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
       value: newMacro.dataReward.ii,
       onChange: e => updateNewMacro('dataReward', {
         ...newMacro.dataReward,
         ii: e.target.value
       })
-    }), /*#__PURE__*/_react.default.createElement("input", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-xs text-gray-400 mb-1"
+    }, "III"), /*#__PURE__*/_react.default.createElement("input", {
       type: "number",
-      placeholder: "III",
-      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "0",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
       value: newMacro.dataReward.iii,
       onChange: e => updateNewMacro('dataReward', {
         ...newMacro.dataReward,
         iii: e.target.value
       })
-    }), /*#__PURE__*/_react.default.createElement("input", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-xs text-gray-400 mb-1"
+    }, "IV"), /*#__PURE__*/_react.default.createElement("input", {
       type: "number",
-      placeholder: "IV",
-      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "0",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
       value: newMacro.dataReward.iv,
       onChange: e => updateNewMacro('dataReward', {
         ...newMacro.dataReward,
         iv: e.target.value
       })
-    }), /*#__PURE__*/_react.default.createElement("input", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-xs text-gray-400 mb-1"
+    }, "V"), /*#__PURE__*/_react.default.createElement("input", {
       type: "number",
-      placeholder: "V",
-      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      placeholder: "0",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
       value: newMacro.dataReward.v,
       onChange: e => updateNewMacro('dataReward', {
         ...newMacro.dataReward,
         v: e.target.value
       })
-    }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+    })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      className: "block text-xs text-gray-400 mb-1"
+    }, "\uD83E\uDE90 Points"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "0",
+      className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.dataReward.cosmicPoints,
+      onChange: e => updateNewMacro('dataReward', {
+        ...newMacro.dataReward,
+        cosmicPoints: e.target.value
+      })
+    })))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
       className: "flex items-center justify-between mb-2"
     }, /*#__PURE__*/_react.default.createElement("label", {
       className: "block text-sm font-medium text-cyan-300"
@@ -949,38 +973,56 @@
       }, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-sm font-medium mb-1 text-cyan-300"
       }, "Data Reward (", ((_document$getElementB = document.getElementById(`job-${macro.id}`)) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || macro.dataReward.job, ")"), /*#__PURE__*/_react.default.createElement("div", {
-        className: "grid grid-cols-5 gap-2"
-      }, /*#__PURE__*/_react.default.createElement("input", {
+        className: "grid grid-cols-6 gap-2"
+      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-xs text-gray-400 mb-1"
+      }, "I"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
-        placeholder: "I",
-        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        placeholder: "0",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.i,
         id: `dataRewardI-${macro.id}`
-      }), /*#__PURE__*/_react.default.createElement("input", {
+      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-xs text-gray-400 mb-1"
+      }, "II"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
-        placeholder: "II",
-        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        placeholder: "0",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.ii,
         id: `dataRewardII-${macro.id}`
-      }), /*#__PURE__*/_react.default.createElement("input", {
+      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-xs text-gray-400 mb-1"
+      }, "III"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
-        placeholder: "III",
-        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        placeholder: "0",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.iii,
         id: `dataRewardIII-${macro.id}`
-      }), /*#__PURE__*/_react.default.createElement("input", {
+      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-xs text-gray-400 mb-1"
+      }, "IV"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
-        placeholder: "IV",
-        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        placeholder: "0",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.iv,
         id: `dataRewardIV-${macro.id}`
-      }), /*#__PURE__*/_react.default.createElement("input", {
+      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-xs text-gray-400 mb-1"
+      }, "V"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
-        placeholder: "V",
-        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        placeholder: "0",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.v,
         id: `dataRewardV-${macro.id}`
-      }))), /*#__PURE__*/_react.default.createElement("div", {
+      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+        className: "block text-xs text-gray-400 mb-1"
+      }, "\uD83E\uDE90 Points"), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        placeholder: "0",
+        className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: macro.dataReward.cosmicPoints || 0,
+        id: `dataRewardCosmicPoints-${macro.id}`
+      })))), /*#__PURE__*/_react.default.createElement("div", {
         className: "flex gap-2 justify-end"
       }, /*#__PURE__*/_react.default.createElement("button", {
         onClick: () => setEditingGeneral(null),
@@ -1007,7 +1049,8 @@
               ii: parseInt(document.getElementById(`dataRewardII-${macro.id}`).value) || 0,
               iii: parseInt(document.getElementById(`dataRewardIII-${macro.id}`).value) || 0,
               iv: parseInt(document.getElementById(`dataRewardIV-${macro.id}`).value) || 0,
-              v: parseInt(document.getElementById(`dataRewardV-${macro.id}`).value) || 0
+              v: parseInt(document.getElementById(`dataRewardV-${macro.id}`).value) || 0,
+              cosmicPoints: parseInt(document.getElementById(`dataRewardCosmicPoints-${macro.id}`).value) || 0
             }
           };
           saveGeneralEdit(macro.id, updates);
@@ -1106,7 +1149,20 @@
         className: "text-red-300 font-bold"
       }, "V"), /*#__PURE__*/_react.default.createElement("span", {
         className: "text-red-400 text-sm"
-      }, "\xD7", macro.dataReward.v)), macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && macro.dataReward.v === 0 && /*#__PURE__*/_react.default.createElement("span", {
+      }, "\xD7", macro.dataReward.v)), macro.dataReward.cosmicPoints > 0 && /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 px-3 py-1 bg-cyan-600/30 rounded-md border border-cyan-500/50",
+        style: {
+          boxShadow: '0 0 10px rgba(34, 211, 238, 0.5)'
+        }
+      }, /*#__PURE__*/_react.default.createElement("span", {
+        style: {
+          fontSize: '16px'
+        }
+      }, "\uD83E\uDE90"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-cyan-300 font-bold"
+      }, "Points"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-cyan-400 text-sm"
+      }, "\xD7", macro.dataReward.cosmicPoints)), macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && macro.dataReward.v === 0 && (!macro.dataReward.cosmicPoints || macro.dataReward.cosmicPoints === 0) && /*#__PURE__*/_react.default.createElement("span", {
         className: "text-slate-400 text-sm"
       }, "No data rewards"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
         className: "flex items-center justify-between mb-2"
