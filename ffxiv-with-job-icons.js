@@ -1308,7 +1308,7 @@
       className: "text-center py-12"
     }, /*#__PURE__*/_react.default.createElement("p", {
       className: "text-cyan-300"
-    }, "No missions found matching your criteria."))));
+    }, "No missions found matching your criteria.")));
   };
   // Export as default for module systems
   var _default = _exports.default = FFXIVMacroDatabase;
