@@ -179,6 +179,52 @@ window.FFXIVImportExport = {
     }
   },
 
+  // Parse CSV text into rows respecting quotes and newlines
+  parseCSVRows: function(csvText) {
+    const rows = [];
+    let currentRow = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < csvText.length; i++) {
+      const char = csvText[i];
+      const nextChar = csvText[i + 1];
+
+      if (char === '"') {
+        currentRow += char;
+        if (inQuotes && nextChar === '"') {
+          // Escaped quote - add both quotes
+          currentRow += nextChar;
+          i++; // Skip next quote
+        } else {
+          // Toggle quote mode
+          inQuotes = !inQuotes;
+        }
+      } else if (char === '\n' && !inQuotes) {
+        // End of row (not inside quotes)
+        if (currentRow.trim()) {
+          rows.push(currentRow);
+        }
+        currentRow = '';
+      } else if (char === '\r' && nextChar === '\n' && !inQuotes) {
+        // Windows line ending
+        if (currentRow.trim()) {
+          rows.push(currentRow);
+        }
+        currentRow = '';
+        i++; // Skip the \n
+      } else {
+        currentRow += char;
+      }
+    }
+
+    // Add last row if not empty
+    if (currentRow.trim()) {
+      rows.push(currentRow);
+    }
+
+    return rows;
+  },
+
   // Parse CSV line respecting quotes
   parseCSVLine: function(line) {
     const result = [];
@@ -220,7 +266,7 @@ window.FFXIVImportExport = {
     reader.onload = function(e) {
       try {
         const csvText = e.target.result;
-        const lines = csvText.split('\n').filter(line => line.trim());
+        const lines = self.parseCSVRows(csvText);
 
         if (lines.length < 2) {
           alert('CSV file is empty or invalid!');
