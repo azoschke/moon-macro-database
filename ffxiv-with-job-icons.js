@@ -554,7 +554,34 @@
       className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-green-900/30"
     }, /*#__PURE__*/_react.default.createElement(_lucideReact.Plus, {
       className: "w-4 h-4"
-    }), /*#__PURE__*/_react.default.createElement("span", null, "Add New"))))), showAddForm && /*#__PURE__*/_react.default.createElement("div", {
+    }), /*#__PURE__*/_react.default.createElement("span", null, "Add New")), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToCSV(),
+      className: "px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-blue-900/30"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined w-4 h-4"
+    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export CSV")), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToJSON(),
+      className: "px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-purple-900/30"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined w-4 h-4"
+    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export JSON")), /*#__PURE__*/_react.default.createElement("label", {
+      className: "px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-orange-900/30 cursor-pointer"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined w-4 h-4"
+    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import JSON"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "file",
+      accept: ".json",
+      onChange: e => {
+        const file = e.target.files[0];
+        if (file && window.FFXIVImportExport) {
+          window.FFXIVImportExport.importFromJSON(file, () => {
+            window.location.reload();
+          });
+        }
+        e.target.value = '';
+      },
+      className: "hidden"
+    }))))), showAddForm && /*#__PURE__*/_react.default.createElement("div", {
       className: "mb-6 p-6 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
     }, /*#__PURE__*/_react.default.createElement("h2", {
       className: "text-xl font-semibold mb-4 text-cyan-400"
