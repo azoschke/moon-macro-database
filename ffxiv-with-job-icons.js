@@ -446,9 +446,63 @@
       className: "min-h-screen bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-gray-100 p-6"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "max-w-7xl mx-auto"
-    }, /*#__PURE__*/_react.default.createElement("h1", {
-      className: "text-4xl font-bold mb-8 text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-    }, "FFXIV Cosmic Exploration - Crafting & Gathering Missions"), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("nav", {
+      className: "mb-4 flex justify-end gap-2"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50 cursor-pointer"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined",
+      style: { fontSize: '16px' }
+    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import CSV"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "file",
+      accept: ".csv",
+      onChange: e => {
+        const file = e.target.files[0];
+        if (file && window.FFXIVImportExport) {
+          window.FFXIVImportExport.importFromCSV(file, () => {
+            window.location.reload();
+          });
+        }
+        e.target.value = '';
+      },
+      className: "hidden"
+    })), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToCSV(),
+      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined",
+      style: { fontSize: '16px' }
+    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export CSV")), /*#__PURE__*/_react.default.createElement("label", {
+      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50 cursor-pointer"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined",
+      style: { fontSize: '16px' }
+    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import JSON"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "file",
+      accept: ".json",
+      onChange: e => {
+        const file = e.target.files[0];
+        if (file && window.FFXIVImportExport) {
+          window.FFXIVImportExport.importFromJSON(file, () => {
+            window.location.reload();
+          });
+        }
+        e.target.value = '';
+      },
+      className: "hidden"
+    })), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToJSON(),
+      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined",
+      style: { fontSize: '16px' }
+    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export JSON"))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "text-center mb-8"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "text-xs tracking-widest text-cyan-400/70 mb-2"
+    }, "CRAFTING MACRO DATABASE"), /*#__PURE__*/_react.default.createElement("h1", {
+      className: "text-4xl font-bold uppercase bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+    }, "Cosmic Exploration Missions")), /*#__PURE__*/_react.default.createElement("div", {
       className: "mb-6 space-y-4"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
@@ -549,56 +603,12 @@
     }, "All Jobs"), jobList.map(job => /*#__PURE__*/_react.default.createElement("option", {
       key: job,
       value: job
-    }, job))), /*#__PURE__*/_react.default.createElement("button", {
+    }, job)))))), /*#__PURE__*/_react.default.createElement("button", {
       onClick: () => setShowAddForm(true),
-      className: "px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-green-900/30"
+      className: "mb-6 w-full px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-900/30"
     }, /*#__PURE__*/_react.default.createElement(_lucideReact.Plus, {
       className: "w-4 h-4"
-    }), /*#__PURE__*/_react.default.createElement("span", null, "Add New")), /*#__PURE__*/_react.default.createElement("button", {
-      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToCSV(),
-      className: "px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-blue-900/30"
-    }, /*#__PURE__*/_react.default.createElement("span", {
-      className: "material-symbols-outlined w-4 h-4"
-    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export CSV")), /*#__PURE__*/_react.default.createElement("button", {
-      onClick: () => window.FFXIVImportExport && window.FFXIVImportExport.exportToJSON(),
-      className: "px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-purple-900/30"
-    }, /*#__PURE__*/_react.default.createElement("span", {
-      className: "material-symbols-outlined w-4 h-4"
-    }, "download"), /*#__PURE__*/_react.default.createElement("span", null, "Export JSON")), /*#__PURE__*/_react.default.createElement("label", {
-      className: "px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-orange-900/30 cursor-pointer"
-    }, /*#__PURE__*/_react.default.createElement("span", {
-      className: "material-symbols-outlined w-4 h-4"
-    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import JSON"), /*#__PURE__*/_react.default.createElement("input", {
-      type: "file",
-      accept: ".json",
-      onChange: e => {
-        const file = e.target.files[0];
-        if (file && window.FFXIVImportExport) {
-          window.FFXIVImportExport.importFromJSON(file, () => {
-            window.location.reload();
-          });
-        }
-        e.target.value = '';
-      },
-      className: "hidden"
-    })), /*#__PURE__*/_react.default.createElement("label", {
-      className: "px-4 py-2 bg-gradient-to-r from-teal-600 to-green-600 hover:from-teal-500 hover:to-green-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-teal-900/30 cursor-pointer"
-    }, /*#__PURE__*/_react.default.createElement("span", {
-      className: "material-symbols-outlined w-4 h-4"
-    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import CSV"), /*#__PURE__*/_react.default.createElement("input", {
-      type: "file",
-      accept: ".csv",
-      onChange: e => {
-        const file = e.target.files[0];
-        if (file && window.FFXIVImportExport) {
-          window.FFXIVImportExport.importFromCSV(file, () => {
-            window.location.reload();
-          });
-        }
-        e.target.value = '';
-      },
-      className: "hidden"
-    }))))), showAddForm && /*#__PURE__*/_react.default.createElement("div", {
+    }), /*#__PURE__*/_react.default.createElement("span", null, "Add New Macro"))), showAddForm && /*#__PURE__*/_react.default.createElement("div", {
       className: "mb-6 p-6 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
     }, /*#__PURE__*/_react.default.createElement("h2", {
       className: "text-xl font-semibold mb-4 text-cyan-400"
