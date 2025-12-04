@@ -159,7 +159,8 @@
         i: 0,
         ii: 0,
         iii: 0,
-        iv: 0
+        iv: 0,
+        v: 0
       },
       foodRequired: false,
       foodType: 'None'
@@ -308,7 +309,8 @@
           i: parseInt(newMacro.dataReward.i) || 0,
           ii: parseInt(newMacro.dataReward.ii) || 0,
           iii: parseInt(newMacro.dataReward.iii) || 0,
-          iv: parseInt(newMacro.dataReward.iv) || 0
+          iv: parseInt(newMacro.dataReward.iv) || 0,
+          v: parseInt(newMacro.dataReward.v) || 0
         }
       };
       if (newMacroWithId.items.length > 1) {
@@ -336,7 +338,8 @@
           i: 0,
           ii: 0,
           iii: 0,
-          iv: 0
+          iv: 0,
+          v: 0
         },
         foodRequired: false,
         foodType: 'None'
@@ -576,9 +579,7 @@
       value: "Sinus Ardorum"
     }, "Sinus Ardorum"), /*#__PURE__*/_react.default.createElement("option", {
       value: "Phaenna"
-    }, "Phaenna"), /*#__PURE__*/_react.default.createElement("option", {
-      value: "Sinus Ardorum/Phaenna"
-    }, "Sinus Ardorum/Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+    }, "Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
       className: "block text-sm font-medium mb-1 text-cyan-300"
     }, "Job"), /*#__PURE__*/_react.default.createElement("select", {
       className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
@@ -631,7 +632,7 @@
     }, food)))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
       className: "block text-sm font-medium mb-1 text-cyan-300"
     }, "Data Reward (", newMacro.job, ")"), /*#__PURE__*/_react.default.createElement("div", {
-      className: "grid grid-cols-4 gap-2"
+      className: "grid grid-cols-5 gap-2"
     }, /*#__PURE__*/_react.default.createElement("input", {
       type: "number",
       placeholder: "I",
@@ -668,6 +669,15 @@
         ...newMacro.dataReward,
         iv: e.target.value
       })
+    }), /*#__PURE__*/_react.default.createElement("input", {
+      type: "number",
+      placeholder: "V",
+      className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
+      value: newMacro.dataReward.v,
+      onChange: e => updateNewMacro('dataReward', {
+        ...newMacro.dataReward,
+        v: e.target.value
+      })
     }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
       className: "flex items-center justify-between mb-2"
     }, /*#__PURE__*/_react.default.createElement("label", {
@@ -677,7 +687,7 @@
       className: "px-2 py-1 bg-indigo-600/50 hover:bg-indigo-600/70 backdrop-blur-sm rounded text-sm border border-indigo-500/30 transition-all"
     }, "Add Item")), newMacro.items.map((item, index) => /*#__PURE__*/_react.default.createElement("div", {
       key: index,
-      className: "flex gap-2 mb-2"
+      className: "flex flex-wrap gap-2 mb-2"
     }, /*#__PURE__*/_react.default.createElement("input", {
       type: "text",
       className: "flex-1 px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_0_2px_rgba(6,182,212,0.2)] transition-all",
@@ -829,9 +839,7 @@
         value: "Sinus Ardorum"
       }, "Sinus Ardorum"), /*#__PURE__*/_react.default.createElement("option", {
         value: "Phaenna"
-      }, "Phaenna"), /*#__PURE__*/_react.default.createElement("option", {
-        value: "Sinus Ardorum/Phaenna"
-      }, "Sinus Ardorum/Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      }, "Phaenna"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-sm font-medium mb-1 text-cyan-300"
       }, "Job"), /*#__PURE__*/_react.default.createElement("select", {
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded focus:outline-none focus:border-cyan-500",
@@ -910,7 +918,7 @@
       }, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-sm font-medium mb-1 text-cyan-300"
       }, "Data Reward (", ((_document$getElementB = document.getElementById(`job-${macro.id}`)) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || macro.dataReward.job, ")"), /*#__PURE__*/_react.default.createElement("div", {
-        className: "grid grid-cols-4 gap-2"
+        className: "grid grid-cols-5 gap-2"
       }, /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
         placeholder: "I",
@@ -935,6 +943,12 @@
         className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.iv,
         id: `dataRewardIV-${macro.id}`
+      }), /*#__PURE__*/_react.default.createElement("input", {
+        type: "number",
+        placeholder: "V",
+        className: "px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
+        defaultValue: macro.dataReward.v,
+        id: `dataRewardV-${macro.id}`
       }))), /*#__PURE__*/_react.default.createElement("div", {
         className: "flex gap-2 justify-end"
       }, /*#__PURE__*/_react.default.createElement("button", {
@@ -961,7 +975,8 @@
               i: parseInt(document.getElementById(`dataRewardI-${macro.id}`).value) || 0,
               ii: parseInt(document.getElementById(`dataRewardII-${macro.id}`).value) || 0,
               iii: parseInt(document.getElementById(`dataRewardIII-${macro.id}`).value) || 0,
-              iv: parseInt(document.getElementById(`dataRewardIV-${macro.id}`).value) || 0
+              iv: parseInt(document.getElementById(`dataRewardIV-${macro.id}`).value) || 0,
+              v: parseInt(document.getElementById(`dataRewardV-${macro.id}`).value) || 0
             }
           };
           saveGeneralEdit(macro.id, updates);
@@ -999,8 +1014,6 @@
       }, item.durability))))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h4", {
         className: "font-semibold mb-2 text-cyan-300"
       }, "Data Reward"), /*#__PURE__*/_react.default.createElement("div", {
-        className: "bg-slate-700/30 p-3 rounded-lg border border-slate-600/50"
-      }, /*#__PURE__*/_react.default.createElement("div", {
         className: "flex flex-wrap gap-3"
       }, macro.dataReward.i > 0 && /*#__PURE__*/_react.default.createElement("div", {
         className: "flex items-center gap-2 px-3 py-1 bg-gray-600/30 rounded-md border border-gray-500/50",
@@ -1050,9 +1063,21 @@
         className: "text-purple-300 font-bold"
       }, "IV"), /*#__PURE__*/_react.default.createElement("span", {
         className: "text-purple-400 text-sm"
-      }, "\xD7", macro.dataReward.iv)), macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && /*#__PURE__*/_react.default.createElement("span", {
+      }, "\xD7", macro.dataReward.iv)), macro.dataReward.v > 0 && /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center gap-2 px-3 py-1 bg-red-600/30 rounded-md border border-red-500/50",
+        style: {
+          boxShadow: '0 0 10px rgba(239, 68, 68, 0.5)'
+        }
+      }, /*#__PURE__*/_react.default.createElement(JobIcon, {
+        job: macro.dataReward.job || macro.job,
+        size: 16
+      }), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-red-300 font-bold"
+      }, "V"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "text-red-400 text-sm"
+      }, "\xD7", macro.dataReward.v)), macro.dataReward.i === 0 && macro.dataReward.ii === 0 && macro.dataReward.iii === 0 && macro.dataReward.iv === 0 && macro.dataReward.v === 0 && /*#__PURE__*/_react.default.createElement("span", {
         className: "text-slate-400 text-sm"
-      }, "No data rewards")))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+      }, "No data rewards"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
         className: "flex items-center justify-between mb-2"
       }, /*#__PURE__*/_react.default.createElement("h4", {
         className: "font-semibold text-cyan-300"
