@@ -982,7 +982,7 @@
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.i,
         id: `dataRewardI-${macro.id}`
-      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-xs text-gray-400 mb-1"
       }, "II"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
@@ -990,7 +990,7 @@
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.ii,
         id: `dataRewardII-${macro.id}`
-      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-xs text-gray-400 mb-1"
       }, "III"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
@@ -998,7 +998,7 @@
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.iii,
         id: `dataRewardIII-${macro.id}`
-      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-xs text-gray-400 mb-1"
       }, "IV"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
@@ -1006,7 +1006,7 @@
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.iv,
         id: `dataRewardIV-${macro.id}`
-      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-xs text-gray-400 mb-1"
       }, "V"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
@@ -1014,7 +1014,7 @@
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.v,
         id: `dataRewardV-${macro.id}`
-      }))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+      })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
         className: "block text-xs text-gray-400 mb-1"
       }, "\uD83E\uDE90 Points"), /*#__PURE__*/_react.default.createElement("input", {
         type: "number",
@@ -1022,7 +1022,7 @@
         className: "w-full px-3 py-2 bg-slate-900/50 border border-slate-600/50 rounded",
         defaultValue: macro.dataReward.cosmicPoints || 0,
         id: `dataRewardCosmicPoints-${macro.id}`
-      })))), /*#__PURE__*/_react.default.createElement("div", {
+      }))), /*#__PURE__*/_react.default.createElement("div", {
         className: "flex gap-2 justify-end"
       }, /*#__PURE__*/_react.default.createElement("button", {
         onClick: () => setEditingGeneral(null),
@@ -1332,7 +1332,7 @@
         className: "w-full px-4 py-2 bg-red-600/30 hover:bg-red-600/50 backdrop-blur-sm rounded transition-all flex items-center justify-center gap-2 border border-red-500/30"
       }, /*#__PURE__*/_react.default.createElement(_lucideReact.Trash2, {
         className: "w-4 h-4"
-      }), /*#__PURE__*/_react.default.createElement("span", null, "Delete Entry")))));
+      }), /*#__PURE__*/_react.default.createElement("span", null, "Delete Entry"))))));
     })), macros.length === 0 && /*#__PURE__*/_react.default.createElement("div", {
       className: "text-center py-12"
     }, /*#__PURE__*/_react.default.createElement("p", {
