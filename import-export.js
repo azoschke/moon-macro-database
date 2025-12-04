@@ -340,10 +340,11 @@ window.FFXIVImportExport = {
           const macroText = values[16] || '';
           const notes = values[17] || '';
 
-          console.log('Row', i, 'Quest:', questName, 'Item:', itemName, 'Macro length:', macroText.length);
+          console.log('Row', i, 'Quest:', questName, 'Job:', job, 'Item:', itemName, 'Macro length:', macroText.length);
 
           // Create unique key combining quest name, location, and job to handle duplicate quest names
           const questKey = `${questName}|||${location}|||${job}`;
+          console.log('Quest Key:', questKey, 'Exists:', questMap.has(questKey));
 
           // Create or get quest entry
           if (!questMap.has(questKey)) {
