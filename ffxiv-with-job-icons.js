@@ -581,6 +581,23 @@
         e.target.value = '';
       },
       className: "hidden"
+    })), /*#__PURE__*/_react.default.createElement("label", {
+      className: "px-4 py-2 bg-gradient-to-r from-teal-600 to-green-600 hover:from-teal-500 hover:to-green-500 rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-teal-900/30 cursor-pointer"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined w-4 h-4"
+    }, "upload"), /*#__PURE__*/_react.default.createElement("span", null, "Import CSV"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "file",
+      accept: ".csv",
+      onChange: e => {
+        const file = e.target.files[0];
+        if (file && window.FFXIVImportExport) {
+          window.FFXIVImportExport.importFromCSV(file, () => {
+            window.location.reload();
+          });
+        }
+        e.target.value = '';
+      },
+      className: "hidden"
     }))))), showAddForm && /*#__PURE__*/_react.default.createElement("div", {
       className: "mb-6 p-6 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 shadow-xl"
     }, /*#__PURE__*/_react.default.createElement("h2", {
