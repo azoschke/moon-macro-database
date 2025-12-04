@@ -15,65 +15,46 @@
     // Force React global mapping
     var _react = React;
 
-    // Create React wrapper components for Lucide icons
+    // Create React wrapper components for Material Icons
     var _lucideReact = {};
 
-    // Helper function to convert kebab-case to camelCase for SVG attributes
-    function kebabToCamel(str) {
-      return str.replace(/-([a-z])/g, function(g) { return g[1].toUpperCase(); });
-    }
+    // Map icon names to Material Symbols names
+    var iconNameMap = {
+      'Search': 'search',
+      'Filter': 'filter_list',
+      'Plus': 'add',
+      'X': 'close',
+      'Edit2': 'edit',
+      'Globe': 'language',
+      'Check': 'check',
+      'Copy': 'content_copy',
+      'Coffee': 'restaurant',
+      'ChevronUp': 'expand_less',
+      'ChevronDown': 'expand_more',
+      'Save': 'save',
+      'Trash2': 'delete'
+    };
 
-    // Helper to convert attributes for React
-    function convertAttrs(attrs) {
-      var reactAttrs = {};
-      for (var key in attrs) {
-        if (attrs.hasOwnProperty(key)) {
-          var camelKey = kebabToCamel(key);
-          // Special case for 'class' -> 'className'
-          if (key === 'class') {
-            reactAttrs.className = attrs[key];
-          } else {
-            reactAttrs[camelKey] = attrs[key];
-          }
+    // Create React components for each icon using Material Symbols
+    Object.keys(iconNameMap).forEach(function(iconName) {
+      var materialIconName = iconNameMap[iconName];
+
+      _lucideReact[iconName] = function MaterialIcon(props) {
+        var className = 'material-symbols-outlined';
+        if (props.className) {
+          className += ' ' + props.className;
         }
-      }
-      return reactAttrs;
-    }
 
-    // List of icons used in the app
-    var iconNames = ['Search', 'Filter', 'Plus', 'X', 'Edit2', 'Globe', 'Check', 'Copy', 'Coffee', 'ChevronUp', 'ChevronDown', 'Save', 'Trash2'];
+        var style = {};
+        if (props.size) {
+          style.fontSize = props.size + 'px';
+        }
 
-    // Create React components for each icon
-    iconNames.forEach(function(iconName) {
-      if (typeof lucide !== 'undefined' && lucide.icons && lucide.icons[iconName]) {
-        var iconData = lucide.icons[iconName];
-
-        _lucideReact[iconName] = function LucideIcon(props) {
-          // Merge icon attributes with props
-          var svgAttrs = Object.assign({}, iconData.attrs || {});
-
-          // Apply custom props
-          if (props.className) svgAttrs.class = props.className;
-          if (props.width) svgAttrs.width = props.width;
-          if (props.height) svgAttrs.height = props.height;
-          if (props.size) {
-            svgAttrs.width = props.size;
-            svgAttrs.height = props.size;
-          }
-
-          // Convert attributes to React-friendly format
-          var reactAttrs = convertAttrs(svgAttrs);
-
-          // Create child elements
-          var children = (iconData.children || []).map(function(child, index) {
-            var childAttrs = convertAttrs(child.attrs || {});
-            return React.createElement(child.tag, Object.assign({ key: index }, childAttrs));
-          });
-
-          // Return the SVG element
-          return React.createElement('svg', reactAttrs, children);
-        };
-      }
+        return React.createElement('span', {
+          className: className,
+          style: style
+        }, materialIconName);
+      };
     });
 
   Object.defineProperty(_exports, "__esModule", {
