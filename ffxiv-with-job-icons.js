@@ -449,7 +449,8 @@
     }, /*#__PURE__*/_react.default.createElement("nav", {
       className: "mb-4 flex justify-end gap-2"
     }, /*#__PURE__*/_react.default.createElement("label", {
-      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50 cursor-pointer"
+      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50 cursor-pointer",
+      title: "Overwrites all existing data"
     }, /*#__PURE__*/_react.default.createElement("span", {
       className: "material-symbols-outlined",
       style: { fontSize: '16px' }
@@ -460,6 +461,25 @@
         const file = e.target.files[0];
         if (file && window.FFXIVImportExport) {
           window.FFXIVImportExport.importFromCSV(file, () => {
+            window.location.reload();
+          });
+        }
+        e.target.value = '';
+      },
+      className: "hidden"
+    })), /*#__PURE__*/_react.default.createElement("label", {
+      className: "px-3 py-1 text-sm bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm rounded transition-all flex items-center gap-1 border border-slate-600/50 cursor-pointer",
+      title: "Doesn't overwrite existing data"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "material-symbols-outlined",
+      style: { fontSize: '16px' }
+    }, "add_circle"), /*#__PURE__*/_react.default.createElement("span", null, "Partial CSV Import"), /*#__PURE__*/_react.default.createElement("input", {
+      type: "file",
+      accept: ".csv",
+      onChange: e => {
+        const file = e.target.files[0];
+        if (file && window.FFXIVImportExport) {
+          window.FFXIVImportExport.partialImportFromCSV(file, () => {
             window.location.reload();
           });
         }

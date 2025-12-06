@@ -405,5 +405,182 @@ window.FFXIVImportExport = {
     };
 
     reader.readAsText(file);
+  },
+
+  // Partial import - adds data without overwriting existing entries
+  partialImportFromCSV: function(file, callback) {
+    const reader = new FileReader();
+    const self = this;
+
+    reader.onload = function(e) {
+      try {
+        const csvText = e.target.result;
+        const lines = self.parseCSVRows(csvText);
+
+        if (lines.length < 2) {
+          alert('CSV file is empty or invalid!');
+          return;
+        }
+
+        // Parse header and detect delimiter
+        const delimiter = self.detectDelimiter(lines[0]);
+        const headers = self.parseCSVLine(lines[0], delimiter);
+
+        console.log('Detected delimiter:', delimiter === '\t' ? 'TAB' : 'COMMA');
+        console.log('Headers:', headers);
+
+        // Group rows by quest + location + job to handle duplicate quest names
+        const questMap = new Map();
+
+        for (let i = 1; i < lines.length; i++) {
+          const values = self.parseCSVLine(lines[i], delimiter);
+
+          // Skip rows with too few columns (need at least quest name)
+          if (values.length < 1 || !values[0].trim()) continue;
+
+          const questName = values[0] || '';
+          const location = values[1] || '';
+          const job = values[2] || '';
+          const category = values[3] || '';
+          const foodRequired = values[4] === 'Yes';
+          const foodType = values[5] || 'None';
+          const itemName = values[6] || '';
+          const difficulty = parseInt(values[7]) || 0;
+          const quality = parseInt(values[8]) || 0;
+          const durability = parseInt(values[9]) || 0;
+          const dataRewardJob = values[10] || job;
+          const dataI = parseInt(values[11]) || 0;
+          const dataII = parseInt(values[12]) || 0;
+          const dataIII = parseInt(values[13]) || 0;
+          const dataIV = parseInt(values[14]) || 0;
+          const dataV = parseInt(values[15]) || 0;
+          const cosmicPoints = parseInt(values[16]) || 0;
+          const macroText = values[17] || '';
+          const notes = values[18] || '';
+
+          console.log('Row', i, 'Quest:', questName, 'Job:', job, 'Item:', itemName, 'Macro length:', macroText.length);
+
+          // Create unique key combining quest name, location, and job
+          const questKey = `${questName}|||${location}|||${job}`;
+          console.log('Quest Key:', questKey, 'Exists:', questMap.has(questKey));
+
+          // Create or get quest entry
+          if (!questMap.has(questKey)) {
+            questMap.set(questKey, {
+              id: Date.now() + questMap.size,
+              questName: questName,
+              location: location,
+              job: job,
+              category: category,
+              foodRequired: foodRequired,
+              foodType: foodType,
+              items: [],
+              dataReward: {
+                job: dataRewardJob,
+                i: dataI,
+                ii: dataII,
+                iii: dataIII,
+                iv: dataIV,
+                v: dataV,
+                cosmicPoints: cosmicPoints
+              },
+              notes: notes
+            });
+          }
+
+          const quest = questMap.get(questKey);
+
+          // Add item if it has a name
+          if (itemName) {
+            quest.items.push({
+              name: itemName,
+              difficulty: difficulty,
+              quality: quality,
+              durability: durability
+            });
+
+            // Store macro for this item
+            if (!quest.macros) {
+              quest.macros = [];
+            }
+            quest.macros.push({
+              itemName: itemName,
+              macro: macroText
+            });
+          }
+        }
+
+        // Convert map to array and fix macro structure
+        const newData = Array.from(questMap.values()).map(quest => {
+          // If only one item, use single macro field
+          if (quest.items.length === 1 && quest.macros && quest.macros.length === 1) {
+            quest.macro = quest.macros[0].macro;
+            delete quest.macros;
+          } else if (quest.items.length === 0) {
+            // If no items, add a default one
+            quest.items = [{
+              name: '',
+              difficulty: 0,
+              quality: 0,
+              durability: 0
+            }];
+            quest.macro = '';
+          }
+
+          return quest;
+        });
+
+        if (newData.length === 0) {
+          alert('No valid data found in CSV file!');
+          return;
+        }
+
+        // Load existing data
+        const currentData = localStorage.getItem('ffxiv-macro-database');
+        let existingMacros = [];
+        if (currentData) {
+          existingMacros = JSON.parse(currentData);
+        }
+
+        // Create a map of existing entries using questName + location + job as key
+        const existingMap = new Map();
+        existingMacros.forEach(macro => {
+          const key = `${macro.questName}|||${macro.location}|||${macro.job}`;
+          existingMap.set(key, macro);
+        });
+
+        // Track statistics
+        let addedCount = 0;
+        let skippedCount = 0;
+
+        // Add only new entries (skip duplicates)
+        newData.forEach(newMacro => {
+          const key = `${newMacro.questName}|||${newMacro.location}|||${newMacro.job}`;
+          if (!existingMap.has(key)) {
+            existingMacros.push(newMacro);
+            addedCount++;
+          } else {
+            skippedCount++;
+          }
+        });
+
+        // Ask for confirmation
+        const confirmMessage = `Found ${newData.length} entries in CSV.\n${addedCount} new entries will be added.\n${skippedCount} existing entries will be skipped.\n\nCurrent database has ${existingMacros.length - addedCount} entries.\nAfter import: ${existingMacros.length} total entries.\n\nContinue?`;
+
+        if (confirm(confirmMessage)) {
+          localStorage.setItem('ffxiv-macro-database', JSON.stringify(existingMacros));
+          alert(`Successfully added ${addedCount} new entries!\nSkipped ${skippedCount} duplicate entries.`);
+
+          // Trigger callback to refresh the UI
+          if (callback) callback();
+        }
+
+      } catch (error) {
+        console.error('Partial CSV Import error:', error);
+        alert(`Error importing CSV: ${error.message}`);
+      }
+    };
+
+    reader.readAsText(file);
   }
 };
